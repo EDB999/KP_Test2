@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace KP_Test2
+namespace KP_Test2.Pages.DriverHistoryOrder
 {
     /// <summary>
-    /// Логика взаимодействия для TaxiMenuPage.xaml
+    /// Логика взаимодействия для DriverHistoryOrdersPage.xaml
     /// </summary>
-    public partial class TaxiMenuPage : Page
+    public partial class DriverHistoryOrdersPage : Page
     {
-        public TaxiMenuPage()
+        public DriverHistoryOrdersPage()
         {
             InitializeComponent();
         }

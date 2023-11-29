@@ -64,6 +64,14 @@ namespace KP_Test2
                 Roletype = "user"
             });
 
+            var passengers = context.Passengers.Add(new Passenger()
+            {
+                Addresshome = "",
+                Description = "",
+                Iduser = user.Entity.Iduser,
+                Rating = 5,
+            });
+
             context.SaveChanges();
             MessageBox.Show("Регистрация успешно осуществлена");
             Content = new TaxiUserPage(user.Entity);

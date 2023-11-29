@@ -25,7 +25,6 @@
                 </Grid>
                 <Grid>
                     <Button Name="RegClientLink" HorizontalAlignment="Right" Content="Регистрация клиентов" Style="{StaticResource MaterialDesignFlatButton}" Foreground="#FF00E2FF" Click="RegLink_Click"/>
-                    <Button Name="RegDriverLink" HorizontalAlignment="Left" Content="Регистрация водителей" Style="{StaticResource MaterialDesignFlatButton}" Foreground="DarkOrange" Click="RegDriverLink_Click"/>
                 </Grid>
             </StackPanel>
         </Border>

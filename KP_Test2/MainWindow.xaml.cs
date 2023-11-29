@@ -1,4 +1,5 @@
 ﻿using KP_Test2.EF;
+using KP_Test2.Pages.TaxiUserMenuPage;
 using KP_Test2.Pages.UserPage;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace KP_Test2
 
         private void RegDriverLink_Click(object sender, RoutedEventArgs e)
         {
-            Content = new RegDriverPage();
+           
         }
 
         private void AuthorizationButton_Click(object sender, RoutedEventArgs e)
@@ -45,7 +46,10 @@ namespace KP_Test2
                 Where(n => n.Login == this.LoginBox.Text && n.Password == this.PasswordBox.Text).
                 FirstOrDefault();
             if (user == null) { MessageBox.Show("Данного пользователя не существует", "Ошибка"); return; }
-            else Content = new TaxiUserPage(user);
+            else { TaxiUserMenuWindow taxiUserMenuWindow = new TaxiUserMenuWindow();
+                taxiUserMenuWindow.Show();
+                Hide();
+            }
         }
     }
 }

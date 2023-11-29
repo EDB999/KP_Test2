@@ -1,0 +1,21 @@
+﻿<Window x:Class="KP_Test2.Pages.TaxiUserMenuPage.TaxiUserMenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KP_Test2.Pages.TaxiUserMenuPage"
+        mc:Ignorable="d"
+        Title="Menu" Height="600" Width="1500">
+    <Grid Height="600" VerticalAlignment="Top">
+        <Button x:Name="MakeAnOrderButton" Height="300" Click="MakeAnOrderButton_Click" Background="{x:Null}" Margin="234,142,905,142">
+            <Image Source="Images/MakeAnOrder.png"/>
+        </Button>
+        <Button x:Name="HistoryOrdersButton" Height="300" Width="300" Click="HistoryOrdersButton_Click" Background="{x:Null}" Margin="600,142,600,142">
+            <Image Source="Images/HistoryOrders.png"/>
+        </Button>
+        <Button x:Name="PersonalAccountButton" Height="300" Width="321" Click="PersonalAccountButton_Click" Background="{x:Null}" HorizontalAlignment="Left" Margin="900,142,0,142">
+            <Image Source="Images/PersonalAccount.png"/>
+        </Button>
+        <Button Name="DriverLink" HorizontalAlignment="Right" Content="Стать водителем" Style="{StaticResource MaterialDesignFlatButton}" Foreground="DarkOrange" VerticalAlignment="Top" Width="500" Height="50" Cursor="Hand" Click="DriverLink_Click"/>
+    </Grid>
+</Window>

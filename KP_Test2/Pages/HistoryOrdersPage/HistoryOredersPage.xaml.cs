@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace KP_Test2
+namespace KP_Test2.Pages.HistoryOrdersPage
 {
     /// <summary>
-    /// Логика взаимодействия для RegDriverPage.xaml
+    /// Логика взаимодействия для HistoryOredersPage.xaml
     /// </summary>
-    public partial class RegDriverPage : Page
+    public partial class HistoryOredersPage : Page
     {
-        public RegDriverPage()
+        public HistoryOredersPage()
         {
             InitializeComponent();
         }
