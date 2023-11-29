@@ -1,4 +1,7 @@
-﻿using System;
+﻿using KP_Test2.EF;
+using KP_Test2.Entities;
+using KP_Test2.Pages.UserPage;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
@@ -22,15 +25,13 @@ namespace KP_Test2
     public partial class RegClientPage : Page
     {
 
-        TaxiKpContext db;
-
+        private readonly TaxiKpContext context;
 
         public RegClientPage()
         {
             InitializeComponent();
 
-            db = new TaxiKpContext();
-            
+            context = new TaxiKpContext();
         }
 
         private void RegClientClick(object sender, RoutedEventArgs e)
@@ -43,10 +44,29 @@ namespace KP_Test2
             string contact = textBoxContact.Text.Trim();
             string email = textBoxEmail.Text.Trim();
             int card = int.Parse(textBoxCard.Text.Trim());
-            Client client = new Client(login, pass, pass_entry, name, surname, contact, email, card);
-            db.Clients.Add(client);
-            db.SaveChanges();
+
+            if (!pass.Equals(pass_entry))
+            {
+                MessageBox.Show("Пароли не совпадают", "Ошибка");
+                return;
+            }
+
+            var user = context.Usertaxis.Add(new Usertaxi()
+            {
+                Login = login,
+                Password = pass,
+                Name = name,
+                Surname = surname,
+                Contact = contact,
+                Email = email,
+                Card = card,
+                Dateregistration = DateOnly.FromDateTime(DateTime.Now),
+                Roletype = "user"
+            });
+
+            context.SaveChanges();
             MessageBox.Show("Регистрация успешно осуществлена");
+            Content = new TaxiUserPage(user.Entity);
         }
     }
 }
