@@ -34,19 +34,13 @@ namespace KP_Test2
         {
             Content = new RegClientPage();
         }
-
-        private void RegDriverLink_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
-
         private void AuthorizationButton_Click(object sender, RoutedEventArgs e)
         {
             var user = context.Usertaxis.
                 Where(n => n.Login == this.LoginBox.Text && n.Password == this.PasswordBox.Text).
                 FirstOrDefault();
             if (user == null) { MessageBox.Show("Данного пользователя не существует", "Ошибка"); return; }
-            else { TaxiUserMenuWindow taxiUserMenuWindow = new TaxiUserMenuWindow();
+            else { TaxiUserMenuWindow taxiUserMenuWindow = new TaxiUserMenuWindow(user);
                 taxiUserMenuWindow.Show();
                 Hide();
             }

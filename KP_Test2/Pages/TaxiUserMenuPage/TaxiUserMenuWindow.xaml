@@ -16,6 +16,7 @@
         <Button x:Name="PersonalAccountButton" Height="300" Width="321" Click="PersonalAccountButton_Click" Background="{x:Null}" HorizontalAlignment="Left" Margin="900,142,0,142">
             <Image Source="Images/PersonalAccount.png"/>
         </Button>
-        <Button Name="DriverLink" HorizontalAlignment="Right" Content="Стать водителем" Style="{StaticResource MaterialDesignFlatButton}" Foreground="DarkOrange" VerticalAlignment="Top" Width="500" Height="50" Cursor="Hand" Click="DriverLink_Click"/>
+        <Button Name="DriverLink" HorizontalAlignment="Right" Visibility="Hidden" Content="Стать водителем" Style="{StaticResource MaterialDesignFlatButton}" Foreground="DarkOrange" VerticalAlignment="Top" Width="500" Height="50" Cursor="Hand" Click="DriverLink_Click"/>
+        <Button Name="DriverAccount" HorizontalAlignment="Right" Visibility="Hidden" Content="Водитель" Style="{StaticResource MaterialDesignFlatButton}" Foreground="DarkOrange" VerticalAlignment="Top" Width="500" Height="50" Cursor="Hand" Click="DriverAccount_Click" Margin="0,-6,0,0"/>
     </Grid>
 </Window>

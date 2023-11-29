@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Pages\TaxiDriverMenu\Images\DriverCar.jpg" />
+    <None Remove="Pages\TaxiDriverMenu\Images\DriverHistoryOrders.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.14">
       <PrivateAssets>all</PrivateAssets>
@@ -18,8 +23,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\TaxiDriverMenu\Images\" />
     <Folder Include="Pages\TaxiUserMenuPage\Images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Pages\TaxiDriverMenu\Images\DriverCar.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pages\TaxiDriverMenu\Images\DriverHistoryOrders.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

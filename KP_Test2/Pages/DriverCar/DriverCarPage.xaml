@@ -13,7 +13,24 @@
         <StackPanel>
             <TextBlock HorizontalAlignment="Center" FontSize="30"> Выбор машины</TextBlock>
             <TextBox x:Name="textBoxCar" Margin="10" materialDesign:HintAssist.Hint="Выберите машину" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
-            <Button Content="Выбрать машину" Margin="10"></Button>
+            <Button Content="Выбрать машину" Margin="10" Width="264"></Button>
+            <RadioButton x:Name="HaveCarRadio" />
+            <ListView HorizontalAlignment="Center" Visibility="Hidden" x:Name="CarView" SelectionChanged="CarView_SelectionChanged" SelectionMode="Single" Width="290">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="150" DisplayMemberBinding="{Binding Path=Model}">Модель</GridViewColumn>
+                    <GridViewColumn Width="300" DisplayMemberBinding="{Binding Path=Number}">Номер машины</GridViewColumn>
+                </GridView>
+            </ListView.View>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Label Content="{Binding Model}"/>
+                        <Label Content="{Binding Number}"/>
+                        </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         </StackPanel>
     </Grid>
 </Page>

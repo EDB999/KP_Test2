@@ -1,7 +1,10 @@
-﻿using KP_Test2.Pages.HistoryOrdersPage;
+﻿using KP_Test2.EF;
+using KP_Test2.Entities;
+using KP_Test2.Pages.HistoryOrdersPage;
 using KP_Test2.Pages.MakeAnOrder;
 using KP_Test2.Pages.PersonalAccount;
 using KP_Test2.Pages.RegDriver;
+using KP_Test2.Pages.TaxiDriverMenu;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,9 +26,19 @@ namespace KP_Test2.Pages.TaxiUserMenuPage
     /// </summary>
     public partial class TaxiUserMenuWindow : Window
     {
-        public TaxiUserMenuWindow()
+        private Usertaxi user;
+        private TaxiKpContext context;
+        private bool isDriver;
+        public TaxiUserMenuWindow(Usertaxi user)
         {
             InitializeComponent();
+            this.user = user; this.context = new();
+            isDriver = this.context.Usertaxis.Where(id => id.Iduser == this.user.Iduser).
+                FirstOrDefault()!.Roletype == "user" ? true : false;
+
+            if (isDriver) this.DriverAccount.Visibility = Visibility.Visible;
+            else this.DriverLink.Visibility = Visibility.Visible;
+
         }
 
         private void HistoryOrdersButton_Click(object sender, RoutedEventArgs e)
@@ -40,13 +53,21 @@ namespace KP_Test2.Pages.TaxiUserMenuPage
 
         private void MakeAnOrderButton_Click(object sender, RoutedEventArgs e)
         {
-            Content = new MakeAnOrderPage();
+            Content = new MakeAnOrderPage(this.context.Passengers.
+                Where(s => s.Iduser == user.Iduser).FirstOrDefault()!);
+        }
 
+        private void DriverAccount_Click(Object sender,RoutedEventArgs e)
+        {
+            var driver = this.context.Drivers.Where(id => id.Iduser == this.user.Iduser).FirstOrDefault();
+            TaxiDriverMenuWindow taxiDriverMenuWindow = new TaxiDriverMenuWindow(driver!);
+            taxiDriverMenuWindow.Show();
+            Hide();
         }
 
         private void DriverLink_Click(object sender, RoutedEventArgs e)
         {
-            RegDriverWindow regDriverWindow = new RegDriverWindow();
+            RegDriverWindow regDriverWindow = new RegDriverWindow(user);
             regDriverWindow.Show();
             Hide();
         }

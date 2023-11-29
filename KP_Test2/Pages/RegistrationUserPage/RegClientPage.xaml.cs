@@ -63,6 +63,7 @@ namespace KP_Test2
                 Dateregistration = DateOnly.FromDateTime(DateTime.Now),
                 Roletype = "user"
             });
+            context.SaveChanges();
 
             var passengers = context.Passengers.Add(new Passenger()
             {
