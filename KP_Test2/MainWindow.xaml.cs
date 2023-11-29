@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KP_Test2.EF;
+using KP_Test2.Pages.UserPage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,11 @@ namespace KP_Test2
     /// </summary>
     public partial class MainWindow : Window
     {
+        private TaxiKpContext context;
         public MainWindow()
         {
             InitializeComponent();
+            context = new TaxiKpContext();
         }
 
         private void RegLink_Click(object sender, RoutedEventArgs e)
@@ -33,6 +37,15 @@ namespace KP_Test2
         private void RegDriverLink_Click(object sender, RoutedEventArgs e)
         {
             Content = new RegDriverPage();
+        }
+
+        private void AuthorizationButton_Click(object sender, RoutedEventArgs e)
+        {
+            var user = context.Usertaxis.
+                Where(n => n.Login == this.LoginBox.Text && n.Password == this.PasswordBox.Text).
+                FirstOrDefault();
+            if (user == null) { MessageBox.Show("Данного пользователя не существует", "Ошибка"); return; }
+            else Content = new TaxiUserPage(user);
         }
     }
 }
