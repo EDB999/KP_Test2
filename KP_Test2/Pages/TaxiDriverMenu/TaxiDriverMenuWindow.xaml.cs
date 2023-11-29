@@ -1,5 +1,7 @@
-﻿using KP_Test2.Pages.DriverCar;
+﻿using KP_Test2.Entities;
+using KP_Test2.Pages.DriverCar;
 using KP_Test2.Pages.DriverHistoryOrder;
+using KP_Test2.Pages.ViewPage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +23,11 @@ namespace KP_Test2.Pages.TaxiDriverMenu
     /// </summary>
     public partial class TaxiDriverMenuWindow : Window
     {
-        public TaxiDriverMenuWindow()
+        private Driver driver;
+        public TaxiDriverMenuWindow(Driver driver)
         {
             InitializeComponent();
+            this.driver = driver;
         }
 
         private void DriverHistoryOrdersButton_Click(object sender, RoutedEventArgs e)
@@ -34,6 +38,11 @@ namespace KP_Test2.Pages.TaxiDriverMenu
         private void DriverCarButton_Click(object sender, RoutedEventArgs e)
         {
             Content = new DriverCarPage();
+        }
+
+        private void DriverActivity_Click(object sender, RoutedEventArgs e)
+        {
+            Content = new DriverViewOrders(this.driver);
         }
     }
 }

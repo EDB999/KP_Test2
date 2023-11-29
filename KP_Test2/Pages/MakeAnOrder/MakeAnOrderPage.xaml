@@ -3,14 +3,26 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:KP_Test2.Pages.MakeAnOrder"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MakeAnOrderPage">
 
-    <Grid Background="White">
-        <TextBlock Text="Оформление заказа" FontSize="30" 
-FontWeight="Bold" Margin="0 0 0 20" HorizontalAlignment="Center" Foreground="Black"/>
-        <Button Content="Оформить заказ" Width="200" BorderBrush="#FF5C00FF" > </Button>
+    <Grid Background="AliceBlue">
+        <StackPanel Width="400">
+            <TextBlock Text="Оформление заказа" FontSize="30" 
+                FontWeight="Bold" Margin="0 0 0 20" HorizontalAlignment="Center" Foreground="Black"/>
+            <TextBox x:Name="textBoxAdress" materialDesign:HintAssist.Hint="Откуда" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="285"></TextBox>
+
+            <TextBox x:Name="textBoxToAdress" materialDesign:HintAssist.Hint="Куда" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="282" Margin="59,0,59,0"></TextBox>
+            <Button Content="Домой" Click="Button_Click_1"/>
+            <Label Height="171"/>
+            <Button Content="Заказать" Background="#FF00FFF9" BorderBrush="Black" Foreground="Black" Click="Button_Click" Width="172" Height="41"/>
+            <Label x:Name="WaitOrder" Content="Ожидание водителя" Visibility="Hidden"/>
+            <Button Content="Отменить" x:Name="CancelButton" Background="#FF00FFF9" BorderBrush="Black" Foreground="Black" Visibility="Hidden" Click="CancelButton_Click"/>
+            <!--<TextBox x:Name="textBoxLogin" materialDesign:HintAssist.Hint="Введите логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>-->
+        </StackPanel>
+
     </Grid>
 </Page>

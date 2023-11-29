@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using KP_Test2.Entities;
 
 namespace KP_Test2.Entities;
+
 public partial class Usertaxi
 {
     public int Iduser { get; set; }

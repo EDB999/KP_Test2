@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using KP_Test2.Entities;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace KP_Test2.EF;
 
 public partial class TaxiKpContext : DbContext
@@ -27,7 +28,8 @@ public partial class TaxiKpContext : DbContext
     public virtual DbSet<Usertaxi> Usertaxis { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=Taxi_KP;Username=postgres;Password=401330");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=Taxi_KP;Username=postgres;Password=123");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -101,7 +103,6 @@ public partial class TaxiKpContext : DbContext
 
             entity.HasOne(d => d.IddriverNavigation).WithMany(p => p.Historyorders)
                 .HasForeignKey(d => d.Iddriver)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("historyorder_iddriver_fkey");
 
             entity.HasOne(d => d.IdpassengerNavigation).WithMany(p => p.Historyorders)

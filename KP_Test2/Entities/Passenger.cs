@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace KP_Test2.Entities;
 
-
 public partial class Passenger
 {
     public int Idpassenger { get; set; }

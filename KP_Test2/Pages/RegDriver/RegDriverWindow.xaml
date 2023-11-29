@@ -11,8 +11,7 @@
         <StackPanel>
         <TextBlock Text="Регистрация водителей" FontSize="30" HorizontalAlignment="Center"></TextBlock>
         <TextBox x:Name="textBoxDescryption" materialDesign:HintAssist.Hint="Введите описание" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
-        <TextBox x:Name="textBoxIsWork" materialDesign:HintAssist.Hint="Выберите одно из двух" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
-        <TextBox x:Name="textBoxPlane" materialDesign:HintAssist.Hint="Введите класс" Style="{StaticResource MaterialDesignFloatingHintTextBox}" ></TextBox>
+            <TextBox x:Name="textBoxPlane" materialDesign:HintAssist.Hint="Введите класс" Style="{StaticResource MaterialDesignFloatingHintTextBox}" ></TextBox>
         <TextBox x:Name="textBoxLicense" materialDesign:HintAssist.Hint="Введите лицензцию?" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
         </StackPanel>
         <Button x:Name="RegDriverButton" Content=" Зарегистрироваться водителю" Click="RegDriverButton_Click" > </Button>
