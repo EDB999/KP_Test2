@@ -1,5 +1,4 @@
-﻿using KP_Test2.Pages.TaxiUserMenuPage;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,24 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace KP_Test2.Pages.HistoryOrdersPage
+namespace KP_Test2.Pages.PriceAndPlace
 {
     /// <summary>
-    /// Логика взаимодействия для HistoryOredersPage.xaml
+    /// Логика взаимодействия для PriceAndPlaceWindow.xaml
     /// </summary>
-    public partial class HistoryOredersPage : Page
+    public partial class PriceAndPlaceWindow : Window
     {
-        public HistoryOredersPage()
+        public PriceAndPlaceWindow()
         {
             InitializeComponent();
         }
 
-        private void BackButton_Click(object sender, RoutedEventArgs e)
+        private void ConfirmPrice_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
     }
 }

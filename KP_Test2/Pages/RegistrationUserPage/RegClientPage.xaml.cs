@@ -75,7 +75,7 @@ namespace KP_Test2
 
             context.SaveChanges();
             MessageBox.Show("Регистрация успешно осуществлена");
-            Content = new TaxiUserPage(user.Entity);
+            Content = new MainWindow();
         }
     }
 }

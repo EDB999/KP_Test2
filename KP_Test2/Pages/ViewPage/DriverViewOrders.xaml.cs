@@ -1,5 +1,7 @@
 ﻿using KP_Test2.EF;
 using KP_Test2.Entities;
+using KP_Test2.Pages.PriceAndPlace;
+using MaterialDesignThemes.Wpf;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -46,6 +48,12 @@ namespace KP_Test2.Pages.ViewPage
                 this.context.Historyorders.Update(orderTemp); this.context.SaveChanges();
             }
 
+        }
+
+        private void ChoosePrice_Click(object sender, RoutedEventArgs e)
+        {
+            PriceAndPlaceWindow priceAndPlaceWindow = new PriceAndPlaceWindow();
+            priceAndPlaceWindow.Show();
         }
     }
 }

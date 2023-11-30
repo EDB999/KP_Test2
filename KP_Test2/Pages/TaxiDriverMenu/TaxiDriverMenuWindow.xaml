@@ -7,17 +7,17 @@
         mc:Ignorable="d"
         Title="TaxiDriverMenu" Height="600" Width="1500">
     <Grid Height="600" VerticalAlignment="Top">
-        <Button x:Name="MakeAnOrderButton" Height="300" Background="{x:Null}" Margin="80,150,1059,150">
-            <Image Source="Images/DriverHistoryOrders.jpg"/>
+        <Button x:Name="ViewIncomingOrdersButton" Click="ViewIncomingOrdersButton_Click" Height="300" Background="{x:Null}" Margin="80,150,1059,150">
+            <Image Source="Images/ViewOrders.png"/>
         </Button>
         <Button x:Name="DriverHistoryOrdersButton" Height="300" Width="300" Click="DriverHistoryOrdersButton_Click" Background="{x:Null}" Margin="486,150,714,150">
-            <Image Source="Images/DriverHistoryOrders.jpg"/>
+            <Image Source="Images/DriverHistoryOrders2.jpg"/>
         </Button>
         <Button x:Name="DriverCarButton" Height="300" Width="321" Click="DriverCarButton_Click" Background="{x:Null}" HorizontalAlignment="Left" Margin="1148,150,0,150">
-            <Image Source="Images/DriverCar.jpg"/>
+            <Image Source="Images/Drivercar.jpg"/>
         </Button>
         <Button x:Name="DriverActivity" Height="300" Width="321" Click="DriverActivity_Click" Background="{x:Null}" HorizontalAlignment="Left" Margin="807,150,0,150">
-            <Image Source="Images/DriverCar.jpg"/>
+            <Image Source="Images/DriverAccount.png"/>
         </Button>
     </Grid>
 </Window>

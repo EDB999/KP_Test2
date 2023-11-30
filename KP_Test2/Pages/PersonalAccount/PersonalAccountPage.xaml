@@ -12,8 +12,14 @@
     <Grid Background="White">
         <StackPanel>
             <TextBlock Text="Личный кабинет" FontSize="30" HorizontalAlignment="Center"></TextBlock>
-            <Button Content="Home" Width="100" HorizontalAlignment="Left" Margin="10"></Button>
-            <TextBox x:Name="textBoxRating" materialDesign:HintAssist.Hint="Введите рейтинг?" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+            <TextBox x:Name="textBoxName" materialDesign:HintAssist.Hint="Введите имя" Style="{StaticResource MaterialDesignFloatingHintTextBox}" ></TextBox>
+                <TextBox x:Name="textBoxSurname" materialDesign:HintAssist.Hint="Введите фамилию" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+                <TextBox x:Name="textBoxLogin" materialDesign:HintAssist.Hint="Введите логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+                <TextBox x:Name="textBoxPass" materialDesign:HintAssist.Hint="Введите пароль" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+                <TextBox x:Name="textBoxEmail" materialDesign:HintAssist.Hint="Введите адрес электронной почты" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+                <TextBox x:Name="textBoxContact" materialDesign:HintAssist.Hint="Введите контактый номер" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+                <TextBox x:Name="textBoxCard" materialDesign:HintAssist.Hint="Введите номер кредитной карты" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+                <Button Content="Обновить"  HorizontalAlignment="Center" Margin="10"></Button>
         </StackPanel>
     </Grid>
 </Page>

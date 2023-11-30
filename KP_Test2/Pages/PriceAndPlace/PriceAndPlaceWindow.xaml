@@ -1,0 +1,18 @@
+﻿<Window x:Class="KP_Test2.Pages.PriceAndPlace.PriceAndPlaceWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KP_Test2.Pages.PriceAndPlace"
+        mc:Ignorable="d"
+        Title="PriceAndPlaceWindow" Height="450" Width="800">
+    <Grid Background="White">
+        <StackPanel Margin="10,0,0,0">
+            <TextBox x:Name="textBoxPrice"  materialDesign:HintAssist.Hint="Введите цену поездки" Style="{StaticResource MaterialDesignFloatingHintTextBox}" ></TextBox>
+            <TextBox x:Name="textBoxRouteToPassenger"  materialDesign:HintAssist.Hint="Введите цену? до пассажира" Style="{StaticResource MaterialDesignFloatingHintTextBox}" ></TextBox>
+            <TextBox x:Name="textBoxRouteToPlace"  materialDesign:HintAssist.Hint="Введите цену? до места" Style="{StaticResource MaterialDesignFloatingHintTextBox}" ></TextBox>
+            <Button x:Name="ConfirmPrice" Content="Утвердить цену" Click="ConfirmPrice_Click"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -13,6 +13,7 @@
             <TextBlock Text="История заказов" FontSize="30" 
 FontWeight="Bold" Margin="0 0 0 20" HorizontalAlignment="Center" Foreground="Black"/>
             <ListView Height="312"></ListView>
+            <Button Name="BackButton" HorizontalAlignment="Left" Content="Назад" Style="{StaticResource MaterialDesignFlatButton}" Foreground="#FF00E2FF" Click="BackButton_Click"/>
         </StackPanel>
     </Grid>
 </Page>

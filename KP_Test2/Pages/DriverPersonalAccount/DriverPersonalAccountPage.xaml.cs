@@ -1,5 +1,4 @@
-﻿using KP_Test2.Pages.TaxiUserMenuPage;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace KP_Test2.Pages.HistoryOrdersPage
+namespace KP_Test2.Pages.DriverPersonalAccount
 {
     /// <summary>
-    /// Логика взаимодействия для HistoryOredersPage.xaml
+    /// Логика взаимодействия для DriverPersonalAccountPage.xaml
     /// </summary>
-    public partial class HistoryOredersPage : Page
+    public partial class DriverPersonalAccountPage : Page
     {
-        public HistoryOredersPage()
+        public DriverPersonalAccountPage()
         {
             InitializeComponent();
-        }
-
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            
         }
     }
 }

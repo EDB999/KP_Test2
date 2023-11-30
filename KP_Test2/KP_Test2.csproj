@@ -9,8 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Pages\TaxiDriverMenu\Images\DriverAccount.png" />
     <None Remove="Pages\TaxiDriverMenu\Images\DriverCar.jpg" />
     <None Remove="Pages\TaxiDriverMenu\Images\DriverHistoryOrders.jpg" />
+    <None Remove="Pages\TaxiDriverMenu\Images\DriverHistoryOrders2.jpg" />
+    <None Remove="Pages\TaxiDriverMenu\Images\ViewOrders.png" />
+    <None Remove="Pages\TaxiUserMenuPage\Images\HistoryOrders.png" />
+    <None Remove="Pages\TaxiUserMenuPage\Images\MakeAnOrder.png" />
+    <None Remove="Pages\TaxiUserMenuPage\Images\PersonalAccount.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,16 +29,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\TaxiUserMenuPage\Images\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <Resource Include="Pages\TaxiDriverMenu\Images\DriverAccount.png" />
     <Resource Include="Pages\TaxiDriverMenu\Images\DriverCar.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Pages\TaxiDriverMenu\Images\DriverHistoryOrders.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Pages\TaxiDriverMenu\Images\DriverHistoryOrders2.jpg" />
+    <Resource Include="Pages\TaxiDriverMenu\Images\ViewOrders.png" />
+    <Resource Include="Pages\TaxiUserMenuPage\Images\HistoryOrders.png" />
+    <Resource Include="Pages\TaxiUserMenuPage\Images\MakeAnOrder.png" />
+    <Resource Include="Pages\TaxiUserMenuPage\Images\PersonalAccount.png" />
   </ItemGroup>
 
   <ItemGroup>

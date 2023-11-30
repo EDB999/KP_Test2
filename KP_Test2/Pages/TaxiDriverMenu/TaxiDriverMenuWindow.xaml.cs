@@ -1,6 +1,7 @@
 ﻿using KP_Test2.Entities;
 using KP_Test2.Pages.DriverCar;
 using KP_Test2.Pages.DriverHistoryOrder;
+using KP_Test2.Pages.DriverPersonalAccount;
 using KP_Test2.Pages.ViewPage;
 using System;
 using System.Collections.Generic;
@@ -37,10 +38,16 @@ namespace KP_Test2.Pages.TaxiDriverMenu
 
         private void DriverCarButton_Click(object sender, RoutedEventArgs e)
         {
-            Content = new DriverCarPage();
+            Content = new DriverCarPage(this.driver);
         }
 
         private void DriverActivity_Click(object sender, RoutedEventArgs e)
+        {
+            Content = new DriverPersonalAccountPage();
+        }
+
+
+        private void ViewIncomingOrdersButton_Click(object sender, RoutedEventArgs e)
         {
             Content = new DriverViewOrders(this.driver);
         }

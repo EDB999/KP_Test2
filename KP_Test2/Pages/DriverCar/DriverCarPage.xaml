@@ -6,15 +6,19 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:KP_Test2.Pages.DriverCar"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="700" d:DesignWidth="800"
       Title="DriverCarPage">
 
     <Grid Background="White">
         <StackPanel>
-            <TextBlock HorizontalAlignment="Center" FontSize="30"> Выбор машины</TextBlock>
-            <TextBox x:Name="textBoxCar" Margin="10" materialDesign:HintAssist.Hint="Выберите машину" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
-            <Button Content="Выбрать машину" Margin="10" Width="264"></Button>
-            <RadioButton x:Name="HaveCarRadio" />
+            <TextBlock HorizontalAlignment="Center" FontSize="30"> Выбор машины водителя</TextBlock>
+            <RadioButton x:Name="HaveCarRadio" Content="Собственная машина" FontSize="14" Margin="5"/>
+            <TextBox x:Name="textBoxModerCar" materialDesign:HintAssist.Hint="Введите марку вашей машины" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+            <TextBox x:Name="textBoxNumberCar" materialDesign:HintAssist.Hint="Введите номер машины" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+            <Button Content="Добавить машину" Margin="5"></Button>
+            <RadioButton x:Name="AutoParkCarRadio" Content="Машина автопарка" FontSize="14" Margin="5"/>
+            <TextBox x:Name="textBoxAutoparkNumber" materialDesign:HintAssist.Hint="Выберите предпочитаемую свободную машину" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+            <Button Content="Выбрать машину" Margin="5"></Button>
             <ListView HorizontalAlignment="Center" Visibility="Hidden" x:Name="CarView" SelectionChanged="CarView_SelectionChanged" SelectionMode="Single" Width="290">
             <ListView.View>
                 <GridView>
