@@ -1,0 +1,18 @@
+﻿<Window x:Class="KP_Test2.Pages.HistoryOrdersPage.HistoryOrdersWindow"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KP_Test2.Pages.HistoryOrdersPage"
+        mc:Ignorable="d"
+        Title="HistoryOrdersWindow" Height="450" Width="800">
+    <Grid Background="White">
+        <StackPanel>
+            <TextBlock Text="История заказов" FontSize="30" 
+FontWeight="Bold" Margin="0 0 0 20" HorizontalAlignment="Center" Foreground="Black"/>
+            <ListView Height="312"></ListView>
+            <Button Name="BackButton" HorizontalAlignment="Left" Content="Назад"  Foreground="White" Click="BackButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,25 @@
+﻿<Window x:Class="KP_Test2.Pages.PersonalAccount.PersonalAccountWindow"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KP_Test2.Pages.PersonalAccount"
+        mc:Ignorable="d"
+        Title="PersonalAccountWindow" Height="450" Width="800">
+    <Grid Background="White">
+        <StackPanel>
+            <TextBlock Text="Личный кабинет" FontSize="30" HorizontalAlignment="Center"></TextBlock>
+            <TextBox x:Name="textBoxName" materialDesign:HintAssist.Hint="Введите имя" Style="{StaticResource MaterialDesignFloatingHintTextBox}" ></TextBox>
+            <TextBox x:Name="textBoxSurname" materialDesign:HintAssist.Hint="Введите фамилию" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+            <TextBox x:Name="textBoxLogin" materialDesign:HintAssist.Hint="Введите логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+            <TextBox x:Name="textBoxPass" materialDesign:HintAssist.Hint="Введите пароль" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+            <TextBox x:Name="textBoxEmail" materialDesign:HintAssist.Hint="Введите адрес электронной почты" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+            <TextBox x:Name="textBoxContact" materialDesign:HintAssist.Hint="Введите контактый номер" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+            <TextBox x:Name="textBoxCard" materialDesign:HintAssist.Hint="Введите номер кредитной карты" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+            <Button Content="Обновить"  HorizontalAlignment="Center" Margin="10"></Button>
+            <Button Name="BackButton" HorizontalAlignment="Left" Content="Назад"  Foreground="White" Click="BackButton_Click"/>
+
+        </StackPanel>
+    </Grid>
+</Window>

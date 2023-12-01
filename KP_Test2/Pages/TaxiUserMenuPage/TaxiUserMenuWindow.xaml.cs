@@ -43,18 +43,24 @@ namespace KP_Test2.Pages.TaxiUserMenuPage
 
         private void HistoryOrdersButton_Click(object sender, RoutedEventArgs e)
         {
-            Content = new HistoryOredersPage();
+            HistoryOrdersWindow historyOrdersWindow = new HistoryOrdersWindow(this.user);
+            historyOrdersWindow.Show();
+            Hide();
         }
 
         private void PersonalAccountButton_Click(object sender, RoutedEventArgs e)
         {
-            Content = new PersonalAccountPage();
+            PersonalAccountWindow personalAccountWindow = new PersonalAccountWindow(this.user);
+            personalAccountWindow.Show();
+            Hide();
         }
 
         private void MakeAnOrderButton_Click(object sender, RoutedEventArgs e)
         {
-            Content = new MakeAnOrderPage(this.context.Passengers.
+            MakeAnOrderWindow makeAnOrderWindow = new MakeAnOrderWindow(this.context.Passengers.
                 Where(s => s.Iduser == user.Iduser).FirstOrDefault()!);
+            makeAnOrderWindow.Show();
+            Hide();
         }
 
         private void DriverAccount_Click(Object sender,RoutedEventArgs e)

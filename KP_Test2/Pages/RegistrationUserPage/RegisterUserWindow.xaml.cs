@@ -1,9 +1,7 @@
 ﻿using KP_Test2.EF;
 using KP_Test2.Entities;
-using KP_Test2.Pages.UserPage;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,27 +12,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace KP_Test2
+namespace KP_Test2.Pages.RegistrationUserPage
 {
     /// <summary>
-    /// Логика взаимодействия для RegClientPage.xaml
+    /// Логика взаимодействия для RegisterUserWindow.xaml
     /// </summary>
-    public partial class RegClientPage : Page
+    public partial class RegisterUserWindow : Window
     {
-
         private readonly TaxiKpContext context;
-
-        public RegClientPage()
+        public RegisterUserWindow()
         {
             InitializeComponent();
 
             context = new TaxiKpContext();
         }
 
-        private void RegClientClick(object sender, RoutedEventArgs e)
+
+        private void RegUser_Click(object sender, RoutedEventArgs e)
         {
             string login = textBoxLogin.Text.Trim();
             string pass = textBoxPass.Text.Trim();
@@ -75,7 +71,9 @@ namespace KP_Test2
 
             context.SaveChanges();
             MessageBox.Show("Регистрация успешно осуществлена");
-            Content = new MainWindow();
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            Hide();
         }
     }
 }

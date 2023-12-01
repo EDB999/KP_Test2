@@ -33,23 +33,31 @@ namespace KP_Test2.Pages.TaxiDriverMenu
 
         private void DriverHistoryOrdersButton_Click(object sender, RoutedEventArgs e)
         {
-            Content = new DriverHistoryOrdersPage();
+            DriversHistoryOrdersWindow driversHistoryOrdersWindow = new DriversHistoryOrdersWindow(this.driver);
+            driversHistoryOrdersWindow.Show();
+            Hide();
         }
 
         private void DriverCarButton_Click(object sender, RoutedEventArgs e)
         {
-            Content = new DriverCarPage(this.driver);
+            DriverCarWindow driverCarWindow = new DriverCarWindow(this.driver);
+            driverCarWindow.Show();
+            Hide();
         }
 
         private void DriverActivity_Click(object sender, RoutedEventArgs e)
         {
-            Content = new DriverPersonalAccountPage();
+            DriverPersonalAccountWindow personalAccountWindow = new DriverPersonalAccountWindow(this.driver);
+            personalAccountWindow.Show();
+            Hide();
         }
 
 
         private void ViewIncomingOrdersButton_Click(object sender, RoutedEventArgs e)
         {
-            Content = new DriverViewOrders(this.driver);
+            DriverViewOrdersWindow driverViewOrdersWindow = new DriverViewOrdersWindow(this.driver);
+            driverViewOrdersWindow.Show();
+            Hide();
         }
     }
 }
