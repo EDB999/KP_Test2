@@ -1,0 +1,41 @@
+﻿<Window x:Class="KP_Test2.Pages.DriverHistoryOrder.DriversHistoryOrdersWindow"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KP_Test2.Pages.DriverHistoryOrder"
+        mc:Ignorable="d"
+        Title="DriversHistoryOrdersWindow" Height="450" Width="1000">
+    <Grid Background="White">
+        <StackPanel>
+            <TextBlock Text="История выполненных заказов" HorizontalAlignment="Center" FontSize="30"></TextBlock>
+            <ListView x:Name="HistoryView" Height="312" Width="977">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Idorder}">Идентификатор</GridViewColumn>
+                        <GridViewColumn Width="160" DisplayMemberBinding="{Binding Path=Price}">Выручка заказа</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Routestart}">Откуда</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Routeend}">Куда</GridViewColumn>
+                        <GridViewColumn Width="210" DisplayMemberBinding="{Binding Path=Timestart}">Время начала поездки</GridViewColumn>
+                        <GridViewColumn Width="210" DisplayMemberBinding="{Binding Path=Timeend}">Время конца поездки</GridViewColumn>
+                    </GridView>
+                </ListView.View>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Label Content="{Binding Idorder}"/>
+                            <Label Content="{Binding Price}"/>
+                            <Label Content="{Binding Routestart}"/>
+                            <Label Content="{Binding Routeend}"/>
+                            <Label Content="{Binding Timestart}"/>
+                            <Label Content="{Binding Timeend}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Name="BackButton" HorizontalAlignment="Left" Content="Назад"  Foreground="White" Click="BackButton_Click"/>
+        </StackPanel>
+    </Grid>
+
+</Window>

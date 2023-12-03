@@ -31,6 +31,9 @@ namespace KP_Test2.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Idcar"));
 
+                    b.Property<bool?>("IsFree")
+                        .HasColumnType("boolean");
+
                     b.Property<bool?>("Isautopark")
                         .HasColumnType("boolean")
                         .HasColumnName("isautopark");

@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace KP_Test2.Migrations
 {
     /// <inheritdoc />
-    public partial class init5 : Migration
+    public partial class init13 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,7 +20,8 @@ namespace KP_Test2.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     model = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     numbers = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
-                    isautopark = table.Column<bool>(type: "boolean", nullable: true)
+                    isautopark = table.Column<bool>(type: "boolean", nullable: true),
+                    IsFree = table.Column<bool>(type: "boolean", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -105,12 +106,12 @@ namespace KP_Test2.Migrations
                     idorder = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     idpassenger = table.Column<int>(type: "integer", nullable: false),
-                    iddriver = table.Column<int>(type: "integer", nullable: false),
-                    price = table.Column<int>(type: "integer", nullable: false),
+                    iddriver = table.Column<int>(type: "integer", nullable: true),
+                    price = table.Column<int>(type: "integer", nullable: true),
                     routestart = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
                     routeend = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
-                    timestart = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    timeend = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                    timestart = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    timeend = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
                 },
                 constraints: table =>
                 {
