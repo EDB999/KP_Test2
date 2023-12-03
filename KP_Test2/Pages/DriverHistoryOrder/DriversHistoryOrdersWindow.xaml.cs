@@ -66,8 +66,8 @@ namespace KP_Test2.Pages.DriverHistoryOrder
                 var b = GetDriverHistory().Where(id => id.Idorder == 17).First();
 
                 this.HistoryView.ItemsSource = GetDriverHistory().
-                    Where(t => dateTwo >= DateOnly.FromDateTime((DateTime)t.Timeend!) 
-                    && DateOnly.FromDateTime((DateTime)t.Timestart!) <= dateOne).ToList();
+                    Where(t => dateTwo >= DateOnly.FromDateTime((DateTime)t.Timeend!)
+                        && DateOnly.FromDateTime((DateTime)t.Timestart!) >= dateOne).ToList();
             }
             else 
             this.HistoryView.ItemsSource = GetDriverHistory().
@@ -75,7 +75,7 @@ namespace KP_Test2.Pages.DriverHistoryOrder
                 || Microsoft.EntityFrameworkCore.EF.Functions.Like(t.Routestart, $"%{query}%")
                 || Microsoft.EntityFrameworkCore.EF.Functions.Like(t.Routeend, $"%{query}%"))
                 && (dateTwo >= DateOnly.FromDateTime((DateTime)t.Timeend!)
-                    && DateOnly.FromDateTime((DateTime)t.Timestart!) <= dateOne)
+                        && DateOnly.FromDateTime((DateTime)t.Timestart!) >= dateOne)
                 ).ToList();
         }
 
