@@ -57,24 +57,28 @@ namespace KP_Test2.Pages.HistoryOrdersPage
         {
             string query = this.SearchTextBox.Text;
 
-            var dateOne = DateOnly.FromDateTime(DateTime.Parse(this.DateOne.Text));
-            var dateTwo = DateOnly.FromDateTime(DateTime.Parse(this.DateTwo.Text));
-
-
-            if (query == "")
+            try
             {
-                this.HistoryView.ItemsSource = GetDriverHistory().
-                    Where(t => dateTwo >= DateOnly.FromDateTime((DateTime)t.Timeend!)
-                    && DateOnly.FromDateTime((DateTime)t.Timestart!) <= dateOne).ToList();
+                var dateOne = DateOnly.FromDateTime(DateTime.Parse(this.DateOne.Text));
+                var dateTwo = DateOnly.FromDateTime(DateTime.Parse(this.DateTwo.Text));
+
+                if (query == "")
+                {
+                    this.HistoryView.ItemsSource = GetDriverHistory().
+                        Where(t => dateTwo >= DateOnly.FromDateTime((DateTime)t.Timeend!)
+                        && DateOnly.FromDateTime((DateTime)t.Timestart!) >= dateOne).ToList();
+                }
+                else
+                    this.HistoryView.ItemsSource = GetDriverHistory().
+                        Where(t => (Microsoft.EntityFrameworkCore.EF.Functions.Like(t.Price.ToString()!, $"%{query}%")
+                        || Microsoft.EntityFrameworkCore.EF.Functions.Like(t.Routestart, $"%{query}%")
+                        || Microsoft.EntityFrameworkCore.EF.Functions.Like(t.Routeend, $"%{query}%"))
+                        && (dateTwo >= DateOnly.FromDateTime((DateTime)t.Timeend!)
+                        && DateOnly.FromDateTime((DateTime)t.Timestart!) >= dateOne)
+                        ).ToList();
+
             }
-            else
-                this.HistoryView.ItemsSource = GetDriverHistory().
-                    Where(t => (Microsoft.EntityFrameworkCore.EF.Functions.Like(t.Price.ToString()!, $"%{query}%")
-                    || Microsoft.EntityFrameworkCore.EF.Functions.Like(t.Routestart, $"%{query}%")
-                    || Microsoft.EntityFrameworkCore.EF.Functions.Like(t.Routeend, $"%{query}%"))
-                    && (dateTwo >= DateOnly.FromDateTime((DateTime)t.Timeend!)
-                        && DateOnly.FromDateTime((DateTime)t.Timestart!) <= dateOne)
-                    ).ToList();
+            catch { MessageBox.Show("Ошибка"); return; }
         }
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
