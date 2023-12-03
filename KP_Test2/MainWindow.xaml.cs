@@ -1,5 +1,4 @@
-﻿using KP_Test2.Common;
-using KP_Test2.EF;
+﻿using KP_Test2.EF;
 using KP_Test2.Pages.RegistrationUserPage;
 using KP_Test2.Pages.TaxiUserMenuPage;
 using KP_Test2.Pages.UserPage;

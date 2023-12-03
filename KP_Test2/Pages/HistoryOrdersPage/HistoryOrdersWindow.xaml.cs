@@ -1,6 +1,7 @@
 ﻿using KP_Test2.EF;
 using KP_Test2.Entities;
 using KP_Test2.Pages.TaxiUserMenuPage;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,11 @@ namespace KP_Test2.Pages.HistoryOrdersPage
         {
             InitializeComponent();
             this.user = user; this.context = new();
+            var id_pass = this.context.Passengers.Where(s => s.Iduser == user.Iduser).First().Iduser;
+            this.HistoryView.ItemsSource = this.context.Historyorders.
+                Where(s => s.Idpassenger == id_pass).
+                Include(f => f.IddriverNavigation).
+                ToList();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
