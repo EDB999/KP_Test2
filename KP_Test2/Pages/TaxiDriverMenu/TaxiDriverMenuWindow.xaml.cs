@@ -3,6 +3,7 @@ using KP_Test2.Entities;
 using KP_Test2.Pages.DriverCar;
 using KP_Test2.Pages.DriverHistoryOrder;
 using KP_Test2.Pages.DriverPersonalAccount;
+using KP_Test2.Pages.TaxiUserMenuPage;
 using KP_Test2.Pages.ViewPage;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -28,10 +29,13 @@ namespace KP_Test2.Pages.TaxiDriverMenu
     {
         private Driver driver;
         private readonly TaxiKpContext context;
+        private Usertaxi user;
         public TaxiDriverMenuWindow(Driver driver)
         {
             InitializeComponent(); this.context = new();
             this.driver = this.context.Drivers.Where(d => d.Iddriver == driver.Iddriver).Include(c => c.IdcarNavigation).First();
+            this.context = new();
+            this.user = user;
         }
 
         private void DriverHistoryOrdersButton_Click(object sender, RoutedEventArgs e)
@@ -60,6 +64,13 @@ namespace KP_Test2.Pages.TaxiDriverMenu
         {
             DriverViewOrdersWindow driverViewOrdersWindow = new DriverViewOrdersWindow(this.driver);
             driverViewOrdersWindow.Show();
+            Hide();
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            TaxiUserMenuWindow taxiUserMenuWindow = new TaxiUserMenuWindow(user);
+            taxiUserMenuWindow.Show();
             Hide();
         }
     }

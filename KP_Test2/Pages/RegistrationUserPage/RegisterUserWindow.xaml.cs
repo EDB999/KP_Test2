@@ -41,6 +41,39 @@ namespace KP_Test2.Pages.RegistrationUserPage
             string email = textBoxEmail.Text.Trim();
             int card = int.Parse(textBoxCard.Text.Trim());
 
+            //if (login.Length < 4)
+            //{
+            //    textBoxLogin.ToolTip = "Логин должен содержать не менее 4 символов";
+            //    textBoxLogin.Background = Brushes.Orange;
+            //}
+            //else if (pass.Length < 6)
+            //{
+            //    textBoxPass.ToolTip = "Пароль должен содержать не менее 6 символов";
+            //    textBoxPass.Background = Brushes.Orange;
+            //}
+            //else if (pass_entry.Length < 6)
+            //{
+            //    textBoxPass2.ToolTip = "Пароль должен содержать не менее 6 символов";
+            //    textBoxPass2.Background = Brushes.Orange;
+            //}
+            //else if (!email.Contains("@") && !email.Contains("."))
+            //{
+            //    textBoxEmail.ToolTip = "Электронная почта должна содержать @ и .";
+            //    textBoxEmail.Background = Brushes.Orange;
+            //}
+            //else if (!card.Equals(4))
+            //{
+            //    textBoxCard.ToolTip = "Номер карты должен содержать не менее 4 символов";
+            //    textBoxCard.Background = Brushes.Orange;
+            //}
+            //else {
+            //    textBoxLogin.Background = Brushes.White;
+            //    textBoxPass.Background = Brushes.White;
+            //    textBoxPass2.Background = Brushes.White;
+            //    textBoxEmail.Background = Brushes.White;
+            //    textBoxCard.Background = Brushes.White;
+            //}
+
             if (!pass.Equals(pass_entry))
             {
                 MessageBox.Show("Пароли не совпадают", "Ошибка");

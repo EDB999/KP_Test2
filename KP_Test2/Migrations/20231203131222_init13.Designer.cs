@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace KP_Test2.Migrations
 {
     [DbContext(typeof(TaxiKpContext))]
-    [Migration("20231129202658_init7")]
-    partial class init7
+    [Migration("20231203131222_init13")]
+    partial class init13
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,9 @@ namespace KP_Test2.Migrations
                         .HasColumnName("idcar");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Idcar"));
+
+                    b.Property<bool?>("IsFree")
+                        .HasColumnType("boolean");
 
                     b.Property<bool?>("Isautopark")
                         .HasColumnType("boolean")

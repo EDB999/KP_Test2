@@ -1,6 +1,7 @@
 ﻿using KP_Test2.EF;
 using KP_Test2.Entities;
 using KP_Test2.Pages.TaxiDriverMenu;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,11 +25,16 @@ namespace KP_Test2.Pages.DriverHistoryOrder
     {
         private Driver driver;
         private TaxiKpContext context;
+        private Usertaxi user;
         public DriversHistoryOrdersWindow(Driver driver)
         {
             InitializeComponent();
-            this.driver = driver;
-            this.context = new();
+            this.driver = driver; this.context = new();
+            var id_driver = this.context.Drivers.Where(s => s.Iduser == user.Iduser).First().Iduser;
+            this.HistoryView.ItemsSource = this.context.Historyorders.
+                Where(s => s.Iddriver == id_driver).
+                Include(f => f.IddriverNavigation).
+                ToList();
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
