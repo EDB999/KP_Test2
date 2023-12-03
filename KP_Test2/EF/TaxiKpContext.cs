@@ -28,7 +28,7 @@ public partial class TaxiKpContext : DbContext
     public virtual DbSet<Usertaxi> Usertaxis { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=Taxi_KP;Username=postgres;Password=401330");
+        => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=Taxi_KP;Username=postgres;Password=123");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

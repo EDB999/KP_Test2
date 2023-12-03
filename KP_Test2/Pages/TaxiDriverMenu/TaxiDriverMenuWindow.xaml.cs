@@ -33,9 +33,8 @@ namespace KP_Test2.Pages.TaxiDriverMenu
         public TaxiDriverMenuWindow(Driver driver)
         {
             InitializeComponent(); this.context = new();
-            this.driver = this.context.Drivers.Where(d => d.Iddriver == driver.Iddriver).Include(c => c.IdcarNavigation).First();
+            this.driver = this.context.Drivers.Where(d => d.Iddriver == driver.Iddriver).Include(u => u.IduserNavigation).Include(c => c.IdcarNavigation).First();
             this.context = new();
-            this.user = user;
         }
 
         private void DriverHistoryOrdersButton_Click(object sender, RoutedEventArgs e)
@@ -69,7 +68,7 @@ namespace KP_Test2.Pages.TaxiDriverMenu
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            TaxiUserMenuWindow taxiUserMenuWindow = new TaxiUserMenuWindow(user);
+            TaxiUserMenuWindow taxiUserMenuWindow = new TaxiUserMenuWindow(this.driver.IduserNavigation);
             taxiUserMenuWindow.Show();
             Hide();
         }

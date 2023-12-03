@@ -2,6 +2,7 @@
 using KP_Test2.Entities;
 using KP_Test2.Pages.TaxiUserMenuPage;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,15 +27,23 @@ namespace KP_Test2.Pages.HistoryOrdersPage
     {
         private readonly Usertaxi user;
         private readonly TaxiKpContext context;
+        private readonly Passenger passenger;
         public HistoryOrdersWindow(Usertaxi user)
         {
             InitializeComponent();
             this.user = user; this.context = new();
-            var id_pass = this.context.Passengers.Where(s => s.Iduser == user.Iduser).First().Iduser;
+            passenger = this.context.Passengers.Where(s => s.Iduser == user.Iduser).First();
             this.HistoryView.ItemsSource = this.context.Historyorders.
-                Where(s => s.Idpassenger == id_pass).
+                Where(s => s.Idpassenger == passenger.Idpassenger).
                 Include(f => f.IddriverNavigation).
                 ToList();
+        }
+
+        private IIncludableQueryable<Historyorder, Driver?> GetDriverHistory()
+        {
+            return this.context.Historyorders.
+                Where(s => s.Idpassenger == this.passenger.Idpassenger).
+                Include(u => u.IddriverNavigation);
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -42,6 +51,42 @@ namespace KP_Test2.Pages.HistoryOrdersPage
             TaxiUserMenuWindow taxiUserMenuWindow = new TaxiUserMenuWindow(this.user);
             taxiUserMenuWindow.Show(); 
             Close(); 
+        }
+
+        private void SearchOnDate_Click(object sender, RoutedEventArgs e)
+        {
+            string query = this.SearchTextBox.Text;
+
+            var dateOne = DateOnly.FromDateTime(DateTime.Parse(this.DateOne.Text));
+            var dateTwo = DateOnly.FromDateTime(DateTime.Parse(this.DateTwo.Text));
+
+
+            if (query == "")
+            {
+                this.HistoryView.ItemsSource = GetDriverHistory().
+                    Where(t => dateTwo >= DateOnly.FromDateTime((DateTime)t.Timeend!)
+                    && DateOnly.FromDateTime((DateTime)t.Timestart!) <= dateOne).ToList();
+            }
+            else
+                this.HistoryView.ItemsSource = GetDriverHistory().
+                    Where(t => (Microsoft.EntityFrameworkCore.EF.Functions.Like(t.Price.ToString()!, $"%{query}%")
+                    || Microsoft.EntityFrameworkCore.EF.Functions.Like(t.Routestart, $"%{query}%")
+                    || Microsoft.EntityFrameworkCore.EF.Functions.Like(t.Routeend, $"%{query}%"))
+                    && (dateTwo >= DateOnly.FromDateTime((DateTime)t.Timeend!)
+                        && DateOnly.FromDateTime((DateTime)t.Timestart!) <= dateOne)
+                    ).ToList();
+        }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string query = this.SearchTextBox.Text;
+
+            this.HistoryView.ItemsSource = GetDriverHistory().
+                Where(t => Microsoft.EntityFrameworkCore.EF.Functions.Like(t.Price.ToString()!, $"%{query}%")
+                || Microsoft.EntityFrameworkCore.EF.Functions.Like(t.Routestart, $"%{query}%")
+                || Microsoft.EntityFrameworkCore.EF.Functions.Like(t.Routeend, $"%{query}%")
+                ).ToList();
+
         }
     }
 }
