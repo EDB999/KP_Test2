@@ -66,17 +66,17 @@ namespace KP_Test2.Pages.DriverHistoryOrder
                 var b = GetDriverHistory().Where(id => id.Idorder == 17).First();
 
                 this.HistoryView.ItemsSource = GetDriverHistory().
-                    Where(t => dateTwo <= DateOnly.FromDateTime((DateTime)t.Timeend!) 
-                    && DateOnly.FromDateTime((DateTime)t.Timestart!) >= dateOne).ToList();
+                    Where(t => dateTwo >= DateOnly.FromDateTime((DateTime)t.Timeend!) 
+                    && DateOnly.FromDateTime((DateTime)t.Timestart!) <= dateOne).ToList();
             }
             else 
             this.HistoryView.ItemsSource = GetDriverHistory().
-                Where(t => Microsoft.EntityFrameworkCore.EF.Functions.Like(t.Price.ToString()!, $"%{query}%")
-                && Microsoft.EntityFrameworkCore.EF.Functions.Like(t.Routestart, $"%{query}%")
-                && Microsoft.EntityFrameworkCore.EF.Functions.Like(t.Routeend, $"%{query}%")
-                && (t.Timeend <= this.DateTwo.DisplayDate && t.Timestart >= this.DateOne.DisplayDate)
+                Where(t => (Microsoft.EntityFrameworkCore.EF.Functions.Like(t.Price.ToString()!, $"%{query}%")
+                || Microsoft.EntityFrameworkCore.EF.Functions.Like(t.Routestart, $"%{query}%")
+                || Microsoft.EntityFrameworkCore.EF.Functions.Like(t.Routeend, $"%{query}%"))
+                && (dateTwo >= DateOnly.FromDateTime((DateTime)t.Timeend!)
+                    && DateOnly.FromDateTime((DateTime)t.Timestart!) <= dateOne)
                 ).ToList();
-
         }
 
         private IIncludableQueryable<Historyorder,Driver?> GetDriverHistory()
