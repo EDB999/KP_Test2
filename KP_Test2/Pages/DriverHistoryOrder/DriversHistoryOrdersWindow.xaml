@@ -10,6 +10,20 @@
     <Grid Background="White">
         <StackPanel>
             <TextBlock Text="История выполненных заказов" HorizontalAlignment="Center" FontSize="30"></TextBlock>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBox Grid.Column="0" materialDesign:HintAssist.Hint="Поиск" x:Name="SearchTextBox" TextChanged="SearchTextBox_TextChanged"></TextBox>
+                <DatePicker materialDesign:HintAssist.Hint="Начало диапазона" Grid.Column="1" x:Name="DateOne"/>
+                <DatePicker materialDesign:HintAssist.Hint="Конец диапазона" x:Name="DateTwo" Grid.Column="2"/>
+                <Button Content="Поиск по дате" Grid.Column="3" x:Name="SearchOnDate" Click="SearchOnDate_Click"/>
+                
+            </Grid>
             <ListView x:Name="HistoryView" Height="312" Width="977">
                 <ListView.View>
                     <GridView>
