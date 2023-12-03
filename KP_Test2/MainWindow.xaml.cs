@@ -24,11 +24,13 @@ namespace KP_Test2
     /// </summary>
     public partial class MainWindow : Window
     {
+        private bool IsVisibly { get; set; } = false;
         private TaxiKpContext context;
         public MainWindow()
         {
             InitializeComponent();
             context = new TaxiKpContext();
+            
         }
 
         private void RegLink_Click(object sender, RoutedEventArgs e)
@@ -40,12 +42,28 @@ namespace KP_Test2
         private void AuthorizationButton_Click(object sender, RoutedEventArgs e)
         {
             var user = context.Usertaxis.
-                Where(n => n.Login == this.LoginBox.Text && n.Password == this.PasswordBox.Text).
+                Where(n => n.Login == this.LoginBox.Text && n.Password == this.PasswordBox.Password).
                 FirstOrDefault();
             if (user == null) { MessageBox.Show("Данного пользователя не существует", "Ошибка"); return; }
             else { TaxiUserMenuWindow taxiUserMenuWindow = new TaxiUserMenuWindow(user);
                 taxiUserMenuWindow.Show();
                 Hide();
+            }
+        }
+
+        private void ShowPasswordRadio_Click(object sender, RoutedEventArgs e)
+        {
+            if (!IsVisibly)
+            {
+                this.PasswordBox.Visibility = Visibility.Collapsed;
+                this.PasswordTextBox.Visibility = Visibility.Visible;
+                IsVisibly = true; this.PasswordTextBox.Text = this.PasswordBox.Password;
+            }
+            else
+            {
+                this.PasswordTextBox.Visibility = Visibility.Collapsed;
+                this.PasswordBox.Visibility = Visibility.Visible;
+                IsVisibly = false; this.PasswordBox.Password = this.PasswordTextBox.Text;
             }
         }
     }

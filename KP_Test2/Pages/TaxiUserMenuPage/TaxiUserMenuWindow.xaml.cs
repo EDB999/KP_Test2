@@ -34,7 +34,7 @@ namespace KP_Test2.Pages.TaxiUserMenuPage
             InitializeComponent();
             this.user = user; this.context = new();
             isDriver = this.context.Usertaxis.Where(id => id.Iduser == this.user.Iduser).
-                FirstOrDefault()!.Roletype == "user" ? true : false;
+                FirstOrDefault()!.Roletype == "user" ? false : true;
 
             if (isDriver) this.DriverAccount.Visibility = Visibility.Visible;
             else this.DriverLink.Visibility = Visibility.Visible;

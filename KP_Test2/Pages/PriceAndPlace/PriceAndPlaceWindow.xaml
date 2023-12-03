@@ -5,13 +5,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KP_Test2.Pages.PriceAndPlace"
+        xmlns:toolkit="clr-namespace:CommunityToolkit.Mvvm.Input;assembly=CommunityToolkit.Mvvm"
         mc:Ignorable="d"
         Title="PriceAndPlaceWindow" Height="450" Width="800">
     <Grid Background="White">
         <StackPanel Margin="10,0,0,0">
             <TextBox x:Name="textBoxPrice"  materialDesign:HintAssist.Hint="Введите цену поездки" Style="{StaticResource MaterialDesignFloatingHintTextBox}" ></TextBox>
-            <TextBox x:Name="textBoxRouteToPassenger"  materialDesign:HintAssist.Hint="Введите цену? до пассажира" Style="{StaticResource MaterialDesignFloatingHintTextBox}" ></TextBox>
-            <TextBox x:Name="textBoxRouteToPlace"  materialDesign:HintAssist.Hint="Введите цену? до места" Style="{StaticResource MaterialDesignFloatingHintTextBox}" ></TextBox>
+            <materialDesign:TimePicker Is24Hours="True" SelectedTimeFormat="Long" x:Name="textBoxRouteToPassenger" materialDesign:HintAssist.Hint="Введите время до пассажира" Style="{StaticResource MaterialDesignFilledTimePicker}" ></materialDesign:TimePicker>
+            <materialDesign:TimePicker Is24Hours="True" SelectedTimeFormat="Long" x:Name="textBoxRouteToPlace" materialDesign:HintAssist.Hint="Введите время до конечной точки" Style="{StaticResource MaterialDesignFilledTimePicker}" ></materialDesign:TimePicker>
             <Button x:Name="ConfirmPrice" Content="Утвердить цену" Click="ConfirmPrice_Click"></Button>
         </StackPanel>
     </Grid>

@@ -11,7 +11,32 @@
         <StackPanel>
             <TextBlock Text="История заказов" FontSize="30" 
 FontWeight="Bold" Margin="0 0 0 20" HorizontalAlignment="Center" Foreground="Black"/>
-            <ListView Height="312"></ListView>
+            <ListView x:Name="HistoryView" Height="312">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Idorder}">Идентификатор</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Price}">Цена поездки</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Routestart}">Откуда</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Routeend}">Куда</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Timestart}">Начало поездки</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=Timeend}">Конец поездки</GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=IddriverNavigation.IduserNavigation.Name}">Водитель</GridViewColumn>
+                    </GridView>
+                </ListView.View>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Label Content="{Binding Idorder}"/>
+                            <Label Content="{Binding Price}"/>
+                            <Label Content="{Binding Routestart}"/>
+                            <Label Content="{Binding Routeend}"/>
+                            <Label Content="{Binding Timestart}"/>
+                            <Label Content="{Binding Timeend}"/>
+                            <Label Content="{Binding IddriverNavigation.IduserNavigation.Name}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             <Button Name="BackButton" HorizontalAlignment="Left" Content="Назад"  Foreground="White" Click="BackButton_Click"/>
         </StackPanel>
     </Grid>

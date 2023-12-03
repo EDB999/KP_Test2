@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using static KP_Test2.Pages.ViewPage.DriverViewOrdersWindow;
 
 namespace KP_Test2.Pages.PriceAndPlace
 {
@@ -22,11 +13,21 @@ namespace KP_Test2.Pages.PriceAndPlace
         public PriceAndPlaceWindow()
         {
             InitializeComponent();
+            OrderInfo.RefrashData();
         }
 
         private void ConfirmPrice_Click(object sender, RoutedEventArgs e)
         {
+            if (!int.TryParse(this.textBoxPrice.Text, out var price))
+                MessageBox.Show("Цена некорректна");
 
+            if (price > 0)
+            {
+                OrderInfo.TimeTo = (DateTime)this.textBoxRouteToPassenger!.SelectedTime!;
+                OrderInfo.TimeToEnd = (DateTime)this.textBoxRouteToPlace!.SelectedTime!;
+                OrderInfo.Price = price;
+                this.Hide();
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -42,19 +43,48 @@ namespace KP_Test2.Pages.MakeAnOrder
                 Idpassenger = this.passenger.Idpassenger,
                 Routestart = this.textBoxAdress.Text,
                 Routeend = this.textBoxToAdress.Text,
-            });
+            }).Entity;
             this.context.SaveChanges();
 
-            while (await context.Historyorders.Where(s => order.Entity.Iddriver == null).FirstOrDefaultAsync() != null)
+            while (await context.Historyorders.Where(s => s.Price != null && s.Iddriver != null
+            && s.Timeend != null && s.Timestart != null
+            && order.Idorder == s.Idorder).FirstOrDefaultAsync() == null)
             {
                 if (cancel == true)
                 {
                     this.WaitOrder.Visibility = Visibility.Hidden;
                     this.CancelButton.Visibility = Visibility.Hidden;
-                    var temp_order = this.context.Historyorders.Where(s => s.Idorder == order.Entity.Idorder).FirstOrDefault();
+                    var temp_order = this.context.Historyorders.Where(s => s.Idorder == order.Idorder).FirstOrDefault();
                     this.context.Historyorders.Remove(temp_order!); this.context.SaveChanges();
                     return;
                 }
+            }
+
+            context = new();
+
+            var item = await context.Historyorders.Where(s => order.Idorder == s.Idorder).FirstOrDefaultAsync();
+
+            var order_claim = context.Historyorders.
+                Where(o => o.Idorder == order.Idorder).
+                Include(s => s.IdpassengerNavigation).
+                First();
+
+
+            var code = MessageBox.Show($"Цена поездки: {order_claim.Price}\nВремя прибытия: " +
+                $"{order_claim.Timestart!.ToString()!.Split(" ")[1]}\nВремя прибытия в пунк назначения {order_claim!.Timeend!.ToString()!.Split(" ")[1]}",
+                "Нашли!", MessageBoxButton.YesNo);
+
+            if (code ==  MessageBoxResult.No)
+            {
+                this.context.Historyorders.Remove(order_claim); this.context.SaveChanges();
+                this.WaitOrder.Visibility = Visibility.Hidden;
+                this.CancelButton.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                this.WaitOrder.Visibility = Visibility.Hidden;
+                this.CancelButton.Visibility = Visibility.Hidden;
+                MessageBox.Show("Поездка успешно состоялась", "Успех");
             }
         }
 

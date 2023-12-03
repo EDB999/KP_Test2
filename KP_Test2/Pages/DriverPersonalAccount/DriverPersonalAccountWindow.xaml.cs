@@ -28,7 +28,21 @@ namespace KP_Test2.Pages.DriverPersonalAccount
         {
             InitializeComponent();
             this.driver = driver;
-            this.context = new();
+            this.context = new(); DisplayDriverInfo();
+        }
+
+        private void DisplayDriverInfo()
+        {
+            this.textBoxDescryption.Text = this.driver.Description;
+            this.textBoxPlane.Text = this.driver.Plane;
+        }
+
+        private void UpdateDriverInfo()
+        {
+            this.driver.Description = this.textBoxDescryption.Text;
+            this.driver.Plane = this.textBoxPlane.Text;
+            this.context.Drivers.Update(driver); this.context.SaveChanges();
+            MessageBox.Show("Данные успешно изменены", "Состояние");
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -37,5 +51,7 @@ namespace KP_Test2.Pages.DriverPersonalAccount
             taxiDriverMenuWindow.Show();
             Close();
         }
+
+        private void UpdateButton_Click(object sender, RoutedEventArgs e) => UpdateDriverInfo();
     }
 }

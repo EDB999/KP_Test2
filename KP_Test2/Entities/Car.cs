@@ -13,5 +13,7 @@ public partial class Car
 
     public bool? Isautopark { get; set; }
 
+    public bool IsFree { get; set; } = default;
+
     public virtual ICollection<Driver> Drivers { get; set; } = new List<Driver>();
 }

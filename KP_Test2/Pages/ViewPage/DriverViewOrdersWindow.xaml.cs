@@ -31,6 +31,11 @@ namespace KP_Test2.Pages.ViewPage
         {
             InitializeComponent();
             this.driver = driver; this.context = new TaxiKpContext();
+            LoadActivityOrder();
+        }
+
+        private void LoadActivityOrder()
+        {
             var activityOrders = this.context.Historyorders.
                 Where(o => o.Iddriver == null).
                 Include(p => p.IdpassengerNavigation).
@@ -43,16 +48,20 @@ namespace KP_Test2.Pages.ViewPage
         {
             if (e.AddedItems[0] is Historyorder order)
             {
+                PriceAndPlaceWindow priceAndPlaceWindow = new PriceAndPlaceWindow();
+                priceAndPlaceWindow.ShowDialog();
+
                 var orderTemp = this.context.Historyorders.Where(o => o.Idorder == order.Idorder).FirstOrDefault();
-                orderTemp!.Iddriver = this.driver.Iddriver; orderTemp.Price = new Random().Next(100, 1000);
+                orderTemp!.Iddriver = this.driver.Iddriver; orderTemp.Price = OrderInfo.Price;
+                orderTemp.Timestart = OrderInfo.TimeTo; orderTemp.Timeend = OrderInfo.TimeToEnd;
+
                 this.context.Historyorders.Update(orderTemp); this.context.SaveChanges();
             }
         }
 
         private void ChoosePrice_Click(object sender, RoutedEventArgs e)
         {
-            PriceAndPlaceWindow priceAndPlaceWindow = new PriceAndPlaceWindow();
-            priceAndPlaceWindow.Show();
+
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -60,6 +69,18 @@ namespace KP_Test2.Pages.ViewPage
             TaxiDriverMenuWindow taxiDriverMenuWindow = new TaxiDriverMenuWindow(this.driver);
             taxiDriverMenuWindow.Show();
             Close();
+        }
+
+        public static class OrderInfo
+        {
+            public static int Price;
+            public static DateTime TimeTo;
+            public static DateTime TimeToEnd;
+
+            public static void RefrashData()
+            {
+                Price = 0; TimeTo = DateTime.Now; TimeToEnd = DateTime.Now;
+            }
         }
     }
 }

@@ -1,8 +1,10 @@
-﻿using KP_Test2.Entities;
+﻿using KP_Test2.EF;
+using KP_Test2.Entities;
 using KP_Test2.Pages.DriverCar;
 using KP_Test2.Pages.DriverHistoryOrder;
 using KP_Test2.Pages.DriverPersonalAccount;
 using KP_Test2.Pages.ViewPage;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,10 +27,11 @@ namespace KP_Test2.Pages.TaxiDriverMenu
     public partial class TaxiDriverMenuWindow : Window
     {
         private Driver driver;
+        private readonly TaxiKpContext context;
         public TaxiDriverMenuWindow(Driver driver)
         {
-            InitializeComponent();
-            this.driver = driver;
+            InitializeComponent(); this.context = new();
+            this.driver = this.context.Drivers.Where(d => d.Iddriver == driver.Iddriver).Include(c => c.IdcarNavigation).First();
         }
 
         private void DriverHistoryOrdersButton_Click(object sender, RoutedEventArgs e)
