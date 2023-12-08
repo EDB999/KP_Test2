@@ -7,6 +7,20 @@
         xmlns:local="clr-namespace:KP_Test2.Pages.MakeAnOrder"
         mc:Ignorable="d"
         Title="Оформление заказа" Height="600" Width="600">
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard TargetProperty="Height"  TargetName ="MakeOrderButton" >
+                        <DoubleAnimation From="25" To="45"
+                                     AutoReverse="True"
+                                     RepeatBehavior="Forever"
+                                     Duration="0:0:2"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </Window.Triggers>
     <Grid Background="AliceBlue">
         <StackPanel Width="400">
             <TextBlock Text="Оформление заказа" FontSize="30" 

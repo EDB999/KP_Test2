@@ -63,7 +63,7 @@ namespace KP_Test2.Pages.DriverHistoryOrder
 
             if (query == "")
             {
-                var b = GetDriverHistory().Where(id => id.Idorder == 17).First();
+               
 
                 this.HistoryView.ItemsSource = GetDriverHistory().
                     Where(t => dateTwo >= DateOnly.FromDateTime((DateTime)t.Timeend!)

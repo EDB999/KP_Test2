@@ -14,6 +14,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -32,6 +33,11 @@ namespace KP_Test2.Pages.MakeAnOrder
             InitializeComponent();
             this.passenger = passenger;
             this.context = new();
+            //DoubleAnimation doubleAnimation = new DoubleAnimation();
+            //doubleAnimation.From = 25;
+            //doubleAnimation.To = 50;
+            //doubleAnimation.AutoReverse = true;
+            //MakeOrderButton.BeginAnimation(Button.HeightProperty, doubleAnimation);
         }
 
         private async void MakeOrderButton_Click(object sender, RoutedEventArgs e)
@@ -71,7 +77,7 @@ namespace KP_Test2.Pages.MakeAnOrder
 
 
             var code = MessageBox.Show($"Цена поездки: {order_claim.Price}\nВремя прибытия: " +
-                $"{order_claim.Timestart!.ToString()!.Split(" ")[1]}\nВремя прибытия в пунк назначения {order_claim!.Timeend!.ToString()!.Split(" ")[1]}",
+                $"{order_claim.Timestart!.ToString()!.Split(" ")[1]}\nВремя прибытия в пункт назначения {order_claim!.Timeend!.ToString()!.Split(" ")[1]}",
                 "Нашли!", MessageBoxButton.YesNo);
 
             if (code ==  MessageBoxResult.No)

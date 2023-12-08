@@ -69,9 +69,8 @@ namespace KP_Test2.Pages.PersonalAccount
                 this.passenger.Description = this.textBoxDescription.Text;
                 this.passenger.Addresshome = this.textBoxHome.Text;
                 this.passenger.IduserNavigation = user;
+
                 this.context.Passengers.Update(passenger); this.context.SaveChanges();
-
-
                 MessageBox.Show("Данные успешно изменены", "Состояние");
             }
             catch { MessageBox.Show("Данные были заполнены не правильно","Ошибка"); }

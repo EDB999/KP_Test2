@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Media.Animation;
 
 namespace KP_Test2.Pages.RegistrationUserPage
 {
@@ -27,6 +28,12 @@ namespace KP_Test2.Pages.RegistrationUserPage
             InitializeComponent();
 
             context = new TaxiKpContext();
+
+            DoubleAnimation doubleAnimation = new DoubleAnimation();
+            doubleAnimation.From = 0;
+            doubleAnimation.To = 450;
+            doubleAnimation.Duration = TimeSpan.FromSeconds(3);
+            RegUser.BeginAnimation(Button.WidthProperty, doubleAnimation);
         }
 
 
@@ -41,72 +48,91 @@ namespace KP_Test2.Pages.RegistrationUserPage
             string email = textBoxEmail.Text.Trim();
             int card = int.Parse(textBoxCard.Text.Trim());
 
-            //if (login.Length < 4)
-            //{
-            //    textBoxLogin.ToolTip = "Логин должен содержать не менее 4 символов";
-            //    textBoxLogin.Background = Brushes.Orange;
-            //}
-            //else if (pass.Length < 6)
-            //{
-            //    textBoxPass.ToolTip = "Пароль должен содержать не менее 6 символов";
-            //    textBoxPass.Background = Brushes.Orange;
-            //}
-            //else if (pass_entry.Length < 6)
-            //{
-            //    textBoxPass2.ToolTip = "Пароль должен содержать не менее 6 символов";
-            //    textBoxPass2.Background = Brushes.Orange;
-            //}
-            //else if (!email.Contains("@") && !email.Contains("."))
-            //{
-            //    textBoxEmail.ToolTip = "Электронная почта должна содержать @ и .";
-            //    textBoxEmail.Background = Brushes.Orange;
-            //}
-            //else if (!card.Equals(4))
-            //{
-            //    textBoxCard.ToolTip = "Номер карты должен содержать не менее 4 символов";
-            //    textBoxCard.Background = Brushes.Orange;
-            //}
-            //else {
-            //    textBoxLogin.Background = Brushes.White;
-            //    textBoxPass.Background = Brushes.White;
-            //    textBoxPass2.Background = Brushes.White;
-            //    textBoxEmail.Background = Brushes.White;
-            //    textBoxCard.Background = Brushes.White;
-            //}
+            bool isValidated = true;
+
+            if (login.Length < 3)
+            {
+                textBoxLogin.ToolTip = "Логин должен содержать не менее 3 символов";
+                textBoxLogin.Background = Brushes.Orange;
+                MessageBox.Show("Логин введён неверно", "Ошибка");
+                isValidated = false;
+            }
+            else textBoxLogin.Background = Brushes.White;
+
+            if (pass.Length < 6)
+            {
+                textBoxPass.ToolTip = "Пароль должен содержать не менее 6 символов";
+                textBoxPass.Background = Brushes.Orange;
+                MessageBox.Show("Пароль введён неверно", "Ошибка");
+                isValidated = false;
+            }
+            else textBoxPass.Background = Brushes.White;
+
+            if (pass_entry.Length < 6)
+            {
+                textBoxPass2.ToolTip = "Подтверждение пароля должно содержать не менее 6 символов";
+                textBoxPass2.Background = Brushes.Orange;
+                MessageBox.Show("Подтверждение пароля введено неверно", "Ошибка");
+                isValidated = false;
+            }
+            else textBoxPass2.Background = Brushes.White;
+
+            if (contact.Contains("+"))
+            {
+                textBoxContact.ToolTip = "Пароль должен содержать не менее 6 символов";
+                textBoxContact.Background = Brushes.Orange;
+                MessageBox.Show("Телефоный номер введён неверно", "Ошибка");
+                isValidated = false;
+            }
+            else textBoxContact.Background = Brushes.White;
+
+            if (!email.Contains("@") && !email.Contains("."))
+            {
+                textBoxEmail.ToolTip = "Электронная почта должна содержать @ и .";
+                textBoxEmail.Background = Brushes.Orange;
+                MessageBox.Show("Электронная почта введена неверно", "Ошибка");
+                isValidated = false;
+
+            } else textBoxEmail.Background = Brushes.White;
+
 
             if (!pass.Equals(pass_entry))
             {
                 MessageBox.Show("Пароли не совпадают", "Ошибка");
                 return;
+                isValidated = false;
             }
 
-            var user = context.Usertaxis.Add(new Usertaxi()
+            if (isValidated)
             {
-                Login = login,
-                Password = pass,
-                Name = name,
-                Surname = surname,
-                Contact = contact,
-                Email = email,
-                Card = card,
-                Dateregistration = DateOnly.FromDateTime(DateTime.Now),
-                Roletype = "user"
-            });
-            context.SaveChanges();
+                var user = context.Usertaxis.Add(new Usertaxi()
+                {
+                    Login = login,
+                    Password = pass,
+                    Name = name,
+                    Surname = surname,
+                    Contact = contact,
+                    Email = email,
+                    Card = card,
+                    Dateregistration = DateOnly.FromDateTime(DateTime.Now),
+                    Roletype = "user"
+                });
+                context.SaveChanges();
 
-            var passengers = context.Passengers.Add(new Passenger()
-            {
-                Addresshome = "",
-                Description = "",
-                Iduser = user.Entity.Iduser,
-                Rating = 5,
-            });
+                var passengers = context.Passengers.Add(new Passenger()
+                {
+                    Addresshome = "",
+                    Description = "",
+                    Iduser = user.Entity.Iduser,
+                    Rating = 5,
+                });
 
-            context.SaveChanges();
-            MessageBox.Show("Регистрация успешно осуществлена");
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            Hide();
+                context.SaveChanges();
+                MessageBox.Show("Регистрация успешно осуществлена");
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                Hide();
+            }
         }
     }
 }

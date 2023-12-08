@@ -6,7 +6,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KP_Test2.Pages.RegistrationUserPage"
         mc:Ignorable="d"
-        Title="Регистрация" Height="450" Width="800">
+        Title="Регистрация" Height="500" Width="800">
+    
     <Grid>
         <Border MinWidth="400" Margin="-12,0,15,0" Background="White" VerticalAlignment="Center" Padding="40" MaxWidth="800" CornerRadius="20" Height="492" RenderTransformOrigin="0.5,0.5">
             <Border.RenderTransform>
@@ -23,14 +24,24 @@
             <StackPanel>
                 <TextBlock Text="Регистрация" FontSize="30" 
 FontWeight="Bold" Margin="0 0 0 20" HorizontalAlignment="Center" Foreground="Black"/>
-                <TextBox x:Name="textBoxLogin" materialDesign:HintAssist.Hint="Введите логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+                <TextBox x:Name="textBoxLogin" materialDesign:HintAssist.Hint="Введите логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                    
+                </TextBox>
                 <TextBox x:Name="textBoxPass" materialDesign:HintAssist.Hint="Введите пароль" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
                 <TextBox x:Name="textBoxPass2" materialDesign:HintAssist.Hint="Повторите пароль" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
                 <TextBox x:Name="textBoxName" materialDesign:HintAssist.Hint="Введите имя" Style="{StaticResource MaterialDesignFloatingHintTextBox}" ></TextBox>
                 <TextBox x:Name="textBoxSurname" materialDesign:HintAssist.Hint="Введите фамилию" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
                 <TextBox x:Name="textBoxContact" materialDesign:HintAssist.Hint="Введите контактый номер" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
                 <TextBox x:Name="textBoxEmail" materialDesign:HintAssist.Hint="Введите адрес электронной почты" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
-                <TextBox x:Name="textBoxCard" materialDesign:HintAssist.Hint="Введите номер кредитной карты" Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+                <TextBox x:Name="textBoxCard" materialDesign:HintAssist.Hint="Введите номер кредитной карты" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                    <TextBox.Text>
+                        <Binding Path="Card">
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
                 <Button  x:Name="RegUser" Content="Зарегистрироваться" Margin="0 20 0 0" Background="#FF00FFF9" BorderBrush="Black" Foreground="Black" Click="RegUser_Click"></Button>
             </StackPanel>
         </Border>
