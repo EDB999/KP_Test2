@@ -77,7 +77,7 @@ namespace KP_Test2.Pages.RegistrationUserPage
             }
             else textBoxPass2.Background = Brushes.White;
 
-            if (contact.Contains("+"))
+            if (!contact.Contains("+"))
             {
                 textBoxContact.ToolTip = "Пароль должен содержать не менее 6 символов";
                 textBoxContact.Background = Brushes.Orange;
