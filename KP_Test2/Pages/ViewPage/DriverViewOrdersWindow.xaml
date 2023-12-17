@@ -26,8 +26,8 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button x:Name="ChoosePrice" Content="Выбрать цену"  HorizontalAlignment="Left" Margin="177,275,0,193" Click="ChoosePrice_Click"></Button>
-        <TextBox x:Name="textBoxPassenger" HorizontalAlignment="Left" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Введите номер пассажира" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="173,0,0,0"></TextBox>
+        <!--<Button x:Name="ChoosePrice" Content="Выбрать цену"  HorizontalAlignment="Left" Margin="177,275,0,193" Click="ChoosePrice_Click"></Button>
+        <TextBox x:Name="textBoxPassenger" HorizontalAlignment="Left" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Введите номер пассажира" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="173,0,0,0"></TextBox>-->
         <Button Name="BackButton" HorizontalAlignment="Left" Content="Назад"  Foreground="White" Click="BackButton_Click" Margin="6,370,0,98"/>
     </Grid>
 </Window>

@@ -29,7 +29,30 @@
 
             <TextBox x:Name="textBoxToAdress" materialDesign:HintAssist.Hint="Куда" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Width="282" Margin="59,0,59,0"></TextBox>
             <Button x:Name="HomeButton" Content="Домой" Click="HomeButton_Click"/>
-            <Label Height="171"/>
+            <Label Height="280">
+                <ListView Height="280" x:Name="DriverView" Visibility="Hidden" Width="390" SelectionChanged="DriverView_SelectionChanged">
+   
+                <ListView.View>
+                    <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Paysize}">Цена</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Route}">Время до Вас</GridViewColumn>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=IddriverNavigation.Plane}">Класс</GridViewColumn>
+                    </GridView>
+                </ListView.View>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Label Content="{Binding Paysize}"/>
+                            <Label Content="{Binding Route}"/>
+                            <Label Content="{Binding IddriverNavigation.Plane}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                </ListView>
+
+
+            </Label>
+            <Label x:Name="ShowRouteText" Visibility="Hidden"/>
             <Button x:Name="MakeOrderButton" Content="Заказать" Background="#FF00FFF9" BorderBrush="Black" Foreground="Black" Click="MakeOrderButton_Click" Width="172" Height="41"/>
             <Label x:Name="WaitOrder" Content="Ожидание водителя" Visibility="Hidden"/>
             <Button  Content="Отменить" x:Name="CancelButton" Background="#FF00FFF9" BorderBrush="Black" Foreground="Black" Visibility="Hidden" Click="CancelButton_Click"/>

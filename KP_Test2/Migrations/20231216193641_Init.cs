@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace KP_Test2.Migrations
 {
     /// <inheritdoc />
-    public partial class init13 : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -21,7 +21,7 @@ namespace KP_Test2.Migrations
                     model = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     numbers = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
                     isautopark = table.Column<bool>(type: "boolean", nullable: true),
-                    IsFree = table.Column<bool>(type: "boolean", nullable: true)
+                    isfree = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -50,35 +50,6 @@ namespace KP_Test2.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "driver",
-                columns: table => new
-                {
-                    iddriver = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    rating = table.Column<double>(type: "double precision", nullable: true),
-                    description = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: true),
-                    iswork = table.Column<bool>(type: "boolean", nullable: false),
-                    plane = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    idcar = table.Column<int>(type: "integer", nullable: true),
-                    license = table.Column<int>(type: "integer", nullable: false),
-                    iduser = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("driver_pkey", x => x.iddriver);
-                    table.ForeignKey(
-                        name: "driver_idcar_fkey",
-                        column: x => x.idcar,
-                        principalTable: "car",
-                        principalColumn: "idcar");
-                    table.ForeignKey(
-                        name: "driver_iduser_fkey",
-                        column: x => x.iduser,
-                        principalTable: "usertaxi",
-                        principalColumn: "iduser");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "passenger",
                 columns: table => new
                 {
@@ -94,6 +65,61 @@ namespace KP_Test2.Migrations
                     table.PrimaryKey("passenger_pkey", x => x.idpassenger);
                     table.ForeignKey(
                         name: "passenger_iduser_fkey",
+                        column: x => x.iduser,
+                        principalTable: "usertaxi",
+                        principalColumn: "iduser");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "userorder",
+                columns: table => new
+                {
+                    iduserorder = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    iduser = table.Column<int>(type: "integer", nullable: false),
+                    route = table.Column<float>(type: "real", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("userorder_pkey", x => x.iduserorder);
+                    table.ForeignKey(
+                        name: "userorder_iduser_fkey",
+                        column: x => x.iduser,
+                        principalTable: "passenger",
+                        principalColumn: "idpassenger");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "driver",
+                columns: table => new
+                {
+                    iddriver = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    rating = table.Column<double>(type: "double precision", nullable: true),
+                    description = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: true),
+                    iswork = table.Column<bool>(type: "boolean", nullable: false),
+                    plane = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    idcar = table.Column<int>(type: "integer", nullable: true),
+                    license = table.Column<int>(type: "integer", nullable: false),
+                    lastplace = table.Column<string>(type: "character varying", nullable: true),
+                    iduser = table.Column<int>(type: "integer", nullable: false),
+                    idlink = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("driver_pkey", x => x.iddriver);
+                    table.ForeignKey(
+                        name: "driver_idcar_fkey",
+                        column: x => x.idcar,
+                        principalTable: "car",
+                        principalColumn: "idcar");
+                    table.ForeignKey(
+                        name: "driver_idlink_fkey",
+                        column: x => x.idlink,
+                        principalTable: "userorder",
+                        principalColumn: "iduserorder");
+                    table.ForeignKey(
+                        name: "driver_iduser_fkey",
                         column: x => x.iduser,
                         principalTable: "usertaxi",
                         principalColumn: "iduser");
@@ -134,6 +160,11 @@ namespace KP_Test2.Migrations
                 column: "idcar");
 
             migrationBuilder.CreateIndex(
+                name: "IX_driver_idlink",
+                table: "driver",
+                column: "idlink");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_driver_iduser",
                 table: "driver",
                 column: "iduser");
@@ -152,6 +183,11 @@ namespace KP_Test2.Migrations
                 name: "IX_passenger_iduser",
                 table: "passenger",
                 column: "iduser");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_userorder_iduser",
+                table: "userorder",
+                column: "iduser");
         }
 
         /// <inheritdoc />
@@ -164,10 +200,13 @@ namespace KP_Test2.Migrations
                 name: "driver");
 
             migrationBuilder.DropTable(
-                name: "passenger");
+                name: "car");
 
             migrationBuilder.DropTable(
-                name: "car");
+                name: "userorder");
+
+            migrationBuilder.DropTable(
+                name: "passenger");
 
             migrationBuilder.DropTable(
                 name: "usertaxi");

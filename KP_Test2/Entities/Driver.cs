@@ -19,6 +19,8 @@ public partial class Driver
 
     public int License { get; set; }
 
+    public string? Lastplace { get; set; }
+
     public int Iduser { get; set; }
 
     public virtual ICollection<Historyorder> Historyorders { get; set; } = new List<Historyorder>();
@@ -26,4 +28,6 @@ public partial class Driver
     public virtual Car? IdcarNavigation { get; set; }
 
     public virtual Usertaxi IduserNavigation { get; set; } = null!;
+
+    public virtual ICollection<Userorder> Userorders { get; set; } = new List<Userorder>();
 }

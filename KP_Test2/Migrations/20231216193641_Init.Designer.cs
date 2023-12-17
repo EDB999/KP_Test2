@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace KP_Test2.Migrations
 {
     [DbContext(typeof(TaxiKpContext))]
-    [Migration("20231203131222_init13")]
-    partial class init13
+    [Migration("20231216193641_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,12 +34,13 @@ namespace KP_Test2.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Idcar"));
 
-                    b.Property<bool?>("IsFree")
-                        .HasColumnType("boolean");
-
                     b.Property<bool?>("Isautopark")
                         .HasColumnType("boolean")
                         .HasColumnName("isautopark");
+
+                    b.Property<bool>("Isfree")
+                        .HasColumnType("boolean")
+                        .HasColumnName("isfree");
 
                     b.Property<string>("Model")
                         .IsRequired()
@@ -77,6 +78,10 @@ namespace KP_Test2.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("idcar");
 
+                    b.Property<int?>("Idlink")
+                        .HasColumnType("integer")
+                        .HasColumnName("idlink");
+
                     b.Property<int>("Iduser")
                         .HasColumnType("integer")
                         .HasColumnName("iduser");
@@ -84,6 +89,10 @@ namespace KP_Test2.Migrations
                     b.Property<bool>("Iswork")
                         .HasColumnType("boolean")
                         .HasColumnName("iswork");
+
+                    b.Property<string>("Lastplace")
+                        .HasColumnType("character varying")
+                        .HasColumnName("lastplace");
 
                     b.Property<int>("License")
                         .HasColumnType("integer")
@@ -103,6 +112,8 @@ namespace KP_Test2.Migrations
                         .HasName("driver_pkey");
 
                     b.HasIndex("Idcar");
+
+                    b.HasIndex("Idlink");
 
                     b.HasIndex("Iduser");
 
@@ -195,6 +206,31 @@ namespace KP_Test2.Migrations
                     b.ToTable("passenger", (string)null);
                 });
 
+            modelBuilder.Entity("KP_Test2.Entities.Userorder", b =>
+                {
+                    b.Property<int>("Iduserorder")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("iduserorder");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Iduserorder"));
+
+                    b.Property<int>("Iduser")
+                        .HasColumnType("integer")
+                        .HasColumnName("iduser");
+
+                    b.Property<float>("Route")
+                        .HasColumnType("real")
+                        .HasColumnName("route");
+
+                    b.HasKey("Iduserorder")
+                        .HasName("userorder_pkey");
+
+                    b.HasIndex("Iduser");
+
+                    b.ToTable("userorder", (string)null);
+                });
+
             modelBuilder.Entity("KP_Test2.Entities.Usertaxi", b =>
                 {
                     b.Property<int>("Iduser")
@@ -264,6 +300,11 @@ namespace KP_Test2.Migrations
                         .HasForeignKey("Idcar")
                         .HasConstraintName("driver_idcar_fkey");
 
+                    b.HasOne("KP_Test2.Entities.Userorder", "IdlinkNavigation")
+                        .WithMany("Drivers")
+                        .HasForeignKey("Idlink")
+                        .HasConstraintName("driver_idlink_fkey");
+
                     b.HasOne("KP_Test2.Entities.Usertaxi", "IduserNavigation")
                         .WithMany("Drivers")
                         .HasForeignKey("Iduser")
@@ -271,6 +312,8 @@ namespace KP_Test2.Migrations
                         .HasConstraintName("driver_iduser_fkey");
 
                     b.Navigation("IdcarNavigation");
+
+                    b.Navigation("IdlinkNavigation");
 
                     b.Navigation("IduserNavigation");
                 });
@@ -304,6 +347,17 @@ namespace KP_Test2.Migrations
                     b.Navigation("IduserNavigation");
                 });
 
+            modelBuilder.Entity("KP_Test2.Entities.Userorder", b =>
+                {
+                    b.HasOne("KP_Test2.Entities.Passenger", "IduserNavigation")
+                        .WithMany("Userorders")
+                        .HasForeignKey("Iduser")
+                        .IsRequired()
+                        .HasConstraintName("userorder_iduser_fkey");
+
+                    b.Navigation("IduserNavigation");
+                });
+
             modelBuilder.Entity("KP_Test2.Entities.Car", b =>
                 {
                     b.Navigation("Drivers");
@@ -317,6 +371,13 @@ namespace KP_Test2.Migrations
             modelBuilder.Entity("KP_Test2.Entities.Passenger", b =>
                 {
                     b.Navigation("Historyorders");
+
+                    b.Navigation("Userorders");
+                });
+
+            modelBuilder.Entity("KP_Test2.Entities.Userorder", b =>
+                {
+                    b.Navigation("Drivers");
                 });
 
             modelBuilder.Entity("KP_Test2.Entities.Usertaxi", b =>

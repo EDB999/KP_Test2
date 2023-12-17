@@ -30,9 +30,7 @@ namespace KP_Test2
         {
             InitializeComponent();
             context = new TaxiKpContext();
-            
         }
-
         private void RegLink_Click(object sender, RoutedEventArgs e)
         {
             RegisterUserWindow registerUserWindow = new RegisterUserWindow();
@@ -50,7 +48,6 @@ namespace KP_Test2
                 Hide();
             }
         }
-
         private void ShowPasswordRadio_Click(object sender, RoutedEventArgs e)
         {
             if (!IsVisibly)

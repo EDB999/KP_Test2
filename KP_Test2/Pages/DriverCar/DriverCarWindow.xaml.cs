@@ -58,7 +58,7 @@ namespace KP_Test2.Pages.DriverCar
                 if (driver!.IdcarNavigation!.Isautopark == true)
                 {
                     var old_car = this.context.Cars.Where(id => id.Idcar == temp_driver.Idcar).First();
-                    old_car.IsFree = true; this.context.Cars.Update(old_car);
+                    old_car.Isfree = true; this.context.Cars.Update(old_car);
                 }
                 else
                 {
@@ -70,7 +70,7 @@ namespace KP_Test2.Pages.DriverCar
 
             var car = this.context.Cars.Where(s => s.Idcar == selected).First();
 
-            car.IsFree = false; temp_driver.Idcar = selected;
+            car.Isfree = false; temp_driver.Idcar = selected;
 
             temp_driver.IdcarNavigation = car;
             this.driver = temp_driver;
@@ -94,7 +94,7 @@ namespace KP_Test2.Pages.DriverCar
                     var new_car = this.context.Cars.Add(new Car()
                     {
                         Isautopark = false,
-                        IsFree = false,
+                        Isfree = false,
                         Model = textBoxModerCar.Text,
                         Numbers = textBoxNumberCar.Text,
                     });
@@ -106,7 +106,7 @@ namespace KP_Test2.Pages.DriverCar
                 else //(driver.IdcarNavigation!.Isautopark == false)
                 {
                     var old_car = this.context.Cars.Where(s => s.Idcar == this.driver.Idcar).First();
-                    old_car.IsFree = true; this.context.Update(old_car);
+                    old_car.Isfree = true; this.context.Update(old_car);
                     this.context.SaveChanges();
 
                     var update_car = this.driver.IdcarNavigation;
@@ -147,7 +147,7 @@ namespace KP_Test2.Pages.DriverCar
             this.textBoxNumberCar.Visibility = Visibility.Collapsed;
             this.CarView.Visibility = Visibility.Visible;
             this.SearchAuto.Visibility = Visibility.Visible;
-            this.CarView.ItemsSource = context.Cars.Where(s => s.IsFree == true && s.Isautopark == true).ToList();
+            this.CarView.ItemsSource = context.Cars.Where(s => s.Isfree == true && s.Isautopark == true).ToList();
             if (driver.IdcarNavigation!.Isautopark == true)
                 this.CarName.Content = $"Ваша машина\nМодель: {driver.IdcarNavigation.Model}| Номер: {driver.IdcarNavigation.Numbers}";
         }
@@ -162,7 +162,7 @@ namespace KP_Test2.Pages.DriverCar
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var data = context.Cars.Where(s => s.IsFree == true && s.Isautopark == true);
+            var data = context.Cars.Where(s => s.Isfree == true && s.Isautopark == true);
 
 
             if (this.SearchAuto.Text == "") this.CarView.ItemsSource = data.ToList();
