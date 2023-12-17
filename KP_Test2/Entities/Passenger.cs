@@ -18,4 +18,6 @@ public partial class Passenger
     public virtual ICollection<Historyorder> Historyorders { get; set; } = new List<Historyorder>();
 
     public virtual Usertaxi IduserNavigation { get; set; } = null!;
+
+    public virtual ICollection<Userorder> Userorders { get; set; } = new List<Userorder>();
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using KP_Test2.Entities;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace KP_Test2.EF;
 
 public partial class TaxiKpContext : DbContext
@@ -25,10 +24,13 @@ public partial class TaxiKpContext : DbContext
 
     public virtual DbSet<Passenger> Passengers { get; set; }
 
+    public virtual DbSet<Userorder> Userorders { get; set; }
+
     public virtual DbSet<Usertaxi> Usertaxis { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=Taxi_KP;Username=postgres;Password=401330");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=Taxi_KP;Username=postgres;Password=123");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -40,6 +42,7 @@ public partial class TaxiKpContext : DbContext
 
             entity.Property(e => e.Idcar).HasColumnName("idcar");
             entity.Property(e => e.Isautopark).HasColumnName("isautopark");
+            entity.Property(e => e.Isfree).HasColumnName("isfree");
             entity.Property(e => e.Model)
                 .HasMaxLength(50)
                 .HasColumnName("model");
@@ -61,6 +64,9 @@ public partial class TaxiKpContext : DbContext
             entity.Property(e => e.Idcar).HasColumnName("idcar");
             entity.Property(e => e.Iduser).HasColumnName("iduser");
             entity.Property(e => e.Iswork).HasColumnName("iswork");
+            entity.Property(e => e.Lastplace)
+                .HasColumnType("character varying")
+                .HasColumnName("lastplace");
             entity.Property(e => e.License).HasColumnName("license");
             entity.Property(e => e.Plane)
                 .HasMaxLength(50)
@@ -130,6 +136,29 @@ public partial class TaxiKpContext : DbContext
                 .HasForeignKey(d => d.Iduser)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("passenger_iduser_fkey");
+        });
+
+        modelBuilder.Entity<Userorder>(entity =>
+        {
+            entity.HasKey(e => e.Iduserorder).HasName("userorder_pkey");
+
+            entity.ToTable("userorder");
+
+            entity.Property(e => e.Iduserorder).HasColumnName("iduserorder");
+            entity.Property(e => e.Iddriver).HasColumnName("iddriver");
+            entity.Property(e => e.Iduser).HasColumnName("iduser");
+            entity.Property(e => e.Paysize).HasColumnName("paysize");
+            entity.Property(e => e.Route).HasColumnName("route");
+
+            entity.HasOne(d => d.IddriverNavigation).WithMany(p => p.Userorders)
+                .HasForeignKey(d => d.Iddriver)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("userorder_iddriver_fkey");
+
+            entity.HasOne(d => d.IduserNavigation).WithMany(p => p.Userorders)
+                .HasForeignKey(d => d.Iduser)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("userorder_iduser_fkey");
         });
 
         modelBuilder.Entity<Usertaxi>(entity =>
