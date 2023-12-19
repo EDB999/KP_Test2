@@ -50,7 +50,6 @@ namespace KP_Test2.Pages.MakeAnOrder
             this.context.SaveChanges();
             var result = await new Service.ServiceRoute().GetRoute(this.textBoxAdress.Text, this.textBoxToAdress.Text);
 
-
             ShowRouteText.Visibility = Visibility.Visible;
             ShowRouteText.Content = $"Расстояние маршрута: {result}";
 
@@ -60,8 +59,8 @@ namespace KP_Test2.Pages.MakeAnOrder
             {
                 if (DateTime.Now.Second % 10 == 0)
                 {
-                var drivers = await context.Userorders.Where(p => p.Iduser == passenger.Iduser).Include(s => s.IddriverNavigation).ToListAsync();
-                this.DriverView.ItemsSource = drivers;
+                    var drivers = await context.Userorders.Where(p => p.Iduser == passenger.Iduser).Include(s => s.IddriverNavigation).ToListAsync();
+                    this.DriverView.ItemsSource = drivers;
                 }
                 this.DriverView.Visibility = Visibility.Visible;
                 if (cancel == true)
@@ -130,6 +129,7 @@ namespace KP_Test2.Pages.MakeAnOrder
 
         private void DriverView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            try { _ = e.AddedItems[0]; } catch { return; }
             if (e.AddedItems[0] is Userorder order)
             {
                 MessageBox.Show("Поездка состоялась");

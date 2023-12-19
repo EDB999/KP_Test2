@@ -19,7 +19,7 @@ public partial class Driver
 
     public int License { get; set; }
 
-    public string? Lastplace { get; set; }
+    public string Lastplace { get; set; } = "Мира 1";
 
     public int Iduser { get; set; }
 
